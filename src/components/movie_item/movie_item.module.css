@@ -1,0 +1,44 @@
+.item {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  margin: 0 5px;
+}
+.rank {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0.77);
+  text-align: center;
+  line-height: 28px;
+  border-radius: 4px;
+  left: 6px;
+  top: 6px;
+  color: white;
+  font-weight: bold;
+}
+.imagestandard {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 145%;
+}
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 22px;
+  margin: 0;
+  margin-top: 5px;
+}
+.release_date {
+  margin: 5px 0;
+}
