@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import SearchBar from "./components/search_bar/search_bar";
 import MovieList from "./components/movie_list/movie_list";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import MovieDetail from "./components/movie_detail/movie_detail";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -37,10 +39,17 @@ function App() {
       .catch(error => console.log("error", error));
   }, []);
   return (
-    <div className={styles.app}>
-      <SearchBar onSearch={onSearch} />
-      <MovieList movies={movies} />
-    </div>
+    <BrowserRouter>
+      <Link to="/">
+        <SearchBar onSearch={onSearch} />
+      </Link>
+      <Switch>
+        <Route exact path="/">
+          <MovieList movies={movies} />
+        </Route>
+        <Route exact path="/detail/:id" component={MovieDetail} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
