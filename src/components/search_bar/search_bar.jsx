@@ -1,15 +1,20 @@
 import React from "react";
 import { useRef } from "react";
+import { useHistory } from "react-router-dom";
 
 const SearchBar = ({ onSearch }) => {
   const inputRef = useRef();
+  const history = useHistory();
   const onKeyPress = event => {
     const value = inputRef.current.value;
     if (event.key === "Enter") {
       console.log(value);
       onSearch(value);
+      history.push("/");
+      inputRef.current.value = "";
     }
   };
+
   return (
     <label>
       <input

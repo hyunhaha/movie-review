@@ -2,7 +2,8 @@
   position: relative;
   display: inline-block;
   width: 25%;
-  margin: 0 5px;
+  padding: 0 5px;
+  box-sizing: border-box;
 }
 .rank {
   position: absolute;
