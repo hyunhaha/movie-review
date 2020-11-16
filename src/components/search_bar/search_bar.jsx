@@ -10,7 +10,7 @@ const SearchBar = ({ onSearch }) => {
     if (event.key === "Enter") {
       console.log(value);
       onSearch(value);
-      history.push("/");
+      history.push("/search-result");
       inputRef.current.value = "";
     }
   };
