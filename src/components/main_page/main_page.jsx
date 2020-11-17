@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import MovieList from "../movie_list/movie_list";
 import styles from "./main_page.module.css";
 const MainPage = ({ movieDB }) => {

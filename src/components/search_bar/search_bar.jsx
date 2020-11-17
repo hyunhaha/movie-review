@@ -8,6 +8,7 @@ const SearchBar = ({ onSearch }) => {
   const onKeyPress = event => {
     const value = inputRef.current.value;
     if (event.key === "Enter") {
+      event.preventDefault();
       console.log(value);
       onSearch(value);
       history.push("/search-result");
