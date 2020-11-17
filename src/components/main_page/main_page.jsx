@@ -15,9 +15,11 @@ const MainPage = ({ movieDB }) => {
       });
   }, [movieDB]);
   return (
-    <div className={styles.movie_chart}>
-      <h1 className={styles.title}>영화 순위</h1>
-      <MovieList movies={movies} />
+    <div>
+      <div className={styles.movie_chart}>
+        <h1 className={styles.title}>영화 순위</h1>
+        <MovieList movies={movies} />
+      </div>
     </div>
   );
 };

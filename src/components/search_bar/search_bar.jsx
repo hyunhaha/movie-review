@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
-
+import styles from "./search_bar.module.css";
 const SearchBar = ({ onSearch }) => {
   const inputRef = useRef();
   const history = useHistory();
@@ -16,14 +16,17 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <label>
-      <input
-        ref={inputRef}
-        type="text"
-        placeholder="search..."
-        onKeyPress={onKeyPress}
-      />
-    </label>
+    <form className={styles.form}>
+      <label className={styles.label}>
+        <input
+          className={styles.input}
+          ref={inputRef}
+          type="text"
+          placeholder="search..."
+          onKeyPress={onKeyPress}
+        />
+      </label>
+    </form>
   );
 };
 
