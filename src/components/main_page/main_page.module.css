@@ -1,6 +1,9 @@
 .movie_chart {
   margin: 0 3.5%;
 }
+.title {
+  padding: 0 5px;
+}
 .list {
   padding: 0;
 }
