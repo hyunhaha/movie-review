@@ -26,28 +26,35 @@ const Header = ({ onSearch, authService }) => {
       }
     });
   });
-  const onLogoClick = () => {
+  const onLogoClick = event => {
+    console.log("logolclick");
     history.push("/");
   };
   return (
     <div className={styles.header}>
-      <img
-        onClick={onLogoClick}
-        className={styles.logo}
-        src="/images/logo.png"
-        alt="logo"
-      />
-      <div className={styles.searchbarAndlogin}>
-        <div className={styles.searchbar}>
-          <SearchBar onSearch={onSearchWord} />
-        </div>
-        <button
-          className={login ? styles.logoutbutton : styles.loginbutton}
-          onClick={login ? onLogout : onButtonClick}
-        >
-          {login ? "logout" : "login"}
-        </button>
-      </div>
+      <ul className={styles.list}>
+        <li className={styles.list_logo}>
+          <img
+            onClick={onLogoClick}
+            className={styles.logo}
+            src="/images/logo.png"
+            alt="logo"
+          />
+        </li>
+        <li className={styles.list_searchbar}>
+          <div className={styles.searchbar}>
+            <SearchBar onSearch={onSearchWord} />
+          </div>
+        </li>
+        <li>
+          <button
+            className={login ? styles.logoutbutton : styles.loginbutton}
+            onClick={login ? onLogout : onButtonClick}
+          >
+            {login ? "logout" : "login"}
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };

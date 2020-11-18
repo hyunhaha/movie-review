@@ -14,7 +14,15 @@ const MainPage = ({ movieDB }) => {
       });
   }, [movieDB]);
   return (
-    <div>
+    <div className={styles.main}>
+      <div className={styles.movie_chart}>
+        <h1 className={styles.title}>영화 순위</h1>
+        <MovieList movies={movies} />
+      </div>
+      <div className={styles.movie_chart}>
+        <h1 className={styles.title}>영화 순위</h1>
+        <MovieList movies={movies} />
+      </div>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>영화 순위</h1>
         <MovieList movies={movies} />

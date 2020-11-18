@@ -1,20 +1,31 @@
 .header {
-  display: flex;
-  flex-direction: row;
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
   height: 80px;
-  margin: 0 3.5%;
-  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 3.5%;
+  background-color: white;
 }
-
+.list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.list_logo {
+  height: 80px;
+}
 .logo {
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
 }
-.searchbarAndlogin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.list_searchbar {
+  margin: 0 0 0 auto;
 }
 .searchbar {
   padding-right: 30px;

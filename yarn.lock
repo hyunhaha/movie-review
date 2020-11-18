@@ -9162,6 +9162,15 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-awesome-stars-rating@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-awesome-stars-rating/-/react-awesome-stars-rating-0.2.5.tgz#20b1494981221e6ca73ce6110c8f77268f3ae761"
+  integrity sha512-C8UTdBoC6JfkakokPRc4zKVHkxXely52eob3mhlKPPkjRFA66a8MYrpzZ1zHcHiW+fu81TpaTrzKvAoSm3E4gA==
+  dependencies:
+    prop-types "^15.7.2"
+    react "^16.13.1"
+    react-dom "^16.13.1"
+
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"
