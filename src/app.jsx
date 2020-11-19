@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MovieDetail from "./components/movie_detail/movie_detail";
@@ -16,11 +16,20 @@ function App({ authService, movieDB }) {
         setMovies(items);
       });
   };
-
+  const [login, setLogin] = useState(false);
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      if (!user) {
+        setLogin(false);
+      } else {
+        setLogin(true);
+      }
+    });
+  });
   return (
     <div className={styles.app}>
       <BrowserRouter>
-        <Header onSearch={onSearch} authService={authService} />
+        <Header onSearch={onSearch} authService={authService} login={login} />
         <Switch>
           <Route exact path="/">
             <MainPage movieDB={movieDB} />
@@ -32,7 +41,7 @@ function App({ authService, movieDB }) {
             <SearchResult movies={movies} />
           </Route>
           <Route exact path="/detail/:id">
-            <MovieDetail movieDB={movieDB} />
+            <MovieDetail movieDB={movieDB} login={login} />
           </Route>
         </Switch>
       </BrowserRouter>

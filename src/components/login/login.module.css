@@ -1,0 +1,22 @@
+.login {
+  padding-top: 200px;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.list {
+  list-style: none;
+  padding: 0;
+}
+.google_login {
+  border-style: none;
+  width: 100%;
+  font-size: 26px;
+  line-height: 32px;
+  padding: 10px 0;
+  border-radius: 5px;
+  background: url(/images/google_icon.png) 10px center no-repeat
+    rgb(240, 240, 240);
+  cursor: pointer;
+}

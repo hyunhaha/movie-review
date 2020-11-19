@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import styles from "./login.module.css";
 const Login = ({ authService }) => {
   const history = useHistory();
   const gotoMain = userID => {
@@ -21,20 +21,21 @@ const Login = ({ authService }) => {
     });
   });
   return (
-    <section>
-      <header>header</header>
+    <section className={styles.login}>
+      <header>로그인이 필요합니다</header>
       <section>
         <h1>login</h1>
-        <ul>
+        <ul className={styles.list}>
           <li>
-            <button onClick={onLogin}>Google</button>
+            <button className={styles.google_login} onClick={onLogin}>
+              Google
+            </button>
           </li>
           {/* <li>
             <button>Github</button>
           </li> */}
         </ul>
       </section>
-      <footer>footer</footer>
     </section>
   );
 };

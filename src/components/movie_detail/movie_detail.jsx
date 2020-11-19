@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import ReviewPage from "../review_page/review_page";
 import StarRating from "../star_rating/star_rating";
 import styles from "./movie_detail.module.css";
 
-const MovieDetail = ({ movieDB }) => {
+const MovieDetail = ({ movieDB, login }) => {
   const params = useParams();
+  const history = useHistory();
   const [detail, setDetail] = useState({
     title: "title",
     bgimage: null,
@@ -17,22 +19,37 @@ const MovieDetail = ({ movieDB }) => {
     vote_average: "",
   });
   useEffect(() => {
+    let isSubscribed = true;
     movieDB
       .movieDetail(params.id)
       .then(result =>
-        setDetail({
-          title: result.title,
-          bgimage: "https://image.tmdb.org/t/p/w500" + result.backdrop_path,
-          poster_image: "https://image.tmdb.org/t/p/w500" + result.poster_path,
-          release_date: result.release_date,
-          production_countries: result.production_countries[0].name,
-          genre: result.genres[0].name,
-          vote_average: result.vote_average,
-        })
+        isSubscribed
+          ? setDetail({
+              title: result.title,
+              bgimage: "https://image.tmdb.org/t/p/w500" + result.backdrop_path,
+              poster_image:
+                "https://image.tmdb.org/t/p/w500" + result.poster_path,
+              release_date: result.release_date,
+              production_countries: result.production_countries[0].name,
+              genre: result.genres[0].name,
+              vote_average: result.vote_average,
+            })
+          : null
       )
       .catch(error => console.log("error", error));
+    return () => (isSubscribed = false);
   }, [params.id, movieDB]);
-
+  const [modalState, setModalState] = useState(false);
+  const onReviewClick = () => {
+    if (!login) {
+      history.push("/login");
+    } else {
+      setModalState(true);
+    }
+  };
+  const modalOff = () => {
+    setModalState(false);
+  };
   return (
     <div className={styles.detail}>
       <div className={styles.background_div}>
@@ -56,9 +73,11 @@ const MovieDetail = ({ movieDB }) => {
             detail.release_date.split("-")[0]
           } ・ ${detail.production_countries} ・ ${detail.genre}`}</p>
           <p className={styles.rating}>{`평점 ${detail.vote_average / 2}`}</p>
-          <StarRating />
+          <StarRating login={login} />
+          <button onClick={onReviewClick}>리뷰쓰기</button>
         </div>
       </div>
+      {modalState && <ReviewPage modalOff={modalOff} />}
     </div>
   );
 };
