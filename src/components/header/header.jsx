@@ -8,8 +8,11 @@ const Header = ({ onSearch, authService }) => {
   const history = useHistory();
   const [login, setLogin] = useState(false);
 
-  const onButtonClick = () => {
+  const gotoLoginPage = () => {
     history.push("/login");
+  };
+  const gotoReveiwPage = () => {
+    history.push("/my-review");
   };
   const onSearchWord = query => {
     onSearch(query);
@@ -49,9 +52,14 @@ const Header = ({ onSearch, authService }) => {
         <li>
           <button
             className={login ? styles.logoutbutton : styles.loginbutton}
-            onClick={login ? onLogout : onButtonClick}
+            onClick={login ? onLogout : gotoLoginPage}
           >
             {login ? "logout" : "login"}
+          </button>
+        </li>
+        <li>
+          <button onClick={login ? gotoReveiwPage : gotoLoginPage}>
+            my review
           </button>
         </li>
       </ul>

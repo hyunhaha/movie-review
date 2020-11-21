@@ -6,9 +6,12 @@ import ReviewPage from "../review_page/review_page";
 import StarRating from "../star_rating/star_rating";
 import styles from "./movie_detail.module.css";
 
-const MovieDetail = ({ movieDB, login }) => {
+const MovieDetail = ({ movieDB, authService, addReview, reviewRepository }) => {
   const params = useParams();
   const history = useHistory();
+  const historyState = useHistory().state;
+  const [login, setLogin] = useState(false);
+  const [userId, setUserId] = useState(historyState && historyState.state);
   const [detail, setDetail] = useState({
     title: "title",
     bgimage: null,
@@ -18,6 +21,18 @@ const MovieDetail = ({ movieDB, login }) => {
     genre: "",
     vote_average: "",
   });
+  const [modalState, setModalState] = useState(false);
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      if (user) {
+        setLogin(true);
+        setUserId(user.uid);
+      } else {
+        setLogin(false);
+      }
+    });
+  });
+
   useEffect(() => {
     let isSubscribed = true;
     movieDB
@@ -39,7 +54,7 @@ const MovieDetail = ({ movieDB, login }) => {
       .catch(error => console.log("error", error));
     return () => (isSubscribed = false);
   }, [params.id, movieDB]);
-  const [modalState, setModalState] = useState(false);
+
   const onReviewClick = () => {
     if (!login) {
       history.push("/login");
@@ -50,6 +65,7 @@ const MovieDetail = ({ movieDB, login }) => {
   const modalOff = () => {
     setModalState(false);
   };
+
   return (
     <div className={styles.detail}>
       <div className={styles.background_div}>
@@ -73,11 +89,19 @@ const MovieDetail = ({ movieDB, login }) => {
             detail.release_date.split("-")[0]
           } ・ ${detail.production_countries} ・ ${detail.genre}`}</p>
           <p className={styles.rating}>{`평점 ${detail.vote_average / 2}`}</p>
-          <StarRating login={login} />
+          {/* <StarRating login={login} /> */}
           <button onClick={onReviewClick}>리뷰쓰기</button>
         </div>
       </div>
-      {modalState && <ReviewPage modalOff={modalOff} />}
+      {modalState && (
+        <ReviewPage
+          modalOff={modalOff}
+          onAdd={addReview}
+          reviewRepository={reviewRepository}
+          login={login}
+          userId={userId}
+        />
+      )}
     </div>
   );
 };

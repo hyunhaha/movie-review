@@ -3,15 +3,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ReactStarsRating from "react-awesome-stars-rating";
 import { useHistory } from "react-router-dom";
-const StarRating = ({ value, login }) => {
+const StarRating = ({ value, login, setRate }) => {
   const history = useHistory();
   // const [login, setLogin] = useState(false);
-
+  const [star, setStar] = useState(true);
   const onChange = value => {
     console.log(`rate is ${value}`);
     if (login === false) {
       history.push("/login");
     } else {
+      setRate(value);
+      setStar(false);
     }
   };
   // useEffect(() => {
@@ -28,6 +30,7 @@ const StarRating = ({ value, login }) => {
       onChange={onChange}
       value={value}
       secondaryColor={"lightgray"}
+      isEdit={star}
     />
   );
 };

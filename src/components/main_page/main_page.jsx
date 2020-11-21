@@ -1,11 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import MovieList from "../movie_list/movie_list";
 import styles from "./main_page.module.css";
-const MainPage = ({ movieDB }) => {
+const MainPage = ({ movieDB, authService }) => {
   const [movies, setMovies] = useState([]);
-
+  const [login, setLogin] = useState(false);
+  const historyState = useHistory().state;
+  const [userId, setUserId] = useState(historyState && historyState.id);
   useEffect(() => {
     movieDB
       .mostPopular() //
@@ -13,6 +16,17 @@ const MainPage = ({ movieDB }) => {
         setMovies(items);
       });
   }, [movieDB]);
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      if (user) {
+        setLogin(true);
+        setUserId(user.uid);
+      } else {
+        setLogin(false);
+      }
+    });
+  });
+
   return (
     <div className={styles.main}>
       <div className={styles.movie_chart}>
