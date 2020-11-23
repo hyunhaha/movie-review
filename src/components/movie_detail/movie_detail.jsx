@@ -9,7 +9,6 @@ import styles from "./movie_detail.module.css";
 const MovieDetail = ({ movieDB, reviewRepository }) => {
   const params = useParams();
   const history = useHistory();
-
   const [detail, setDetail] = useState([]);
   const [modalState, setModalState] = useState(false);
   const [userId, setUserId] = useState(null);

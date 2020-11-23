@@ -28,6 +28,7 @@ const ReviewPage = ({ modalOff, reviewRepository, movieId, userId }) => {
       return;
     }
     event.preventDefault();
+
     const review = {
       id: movieId,
       movie_id: movieId,
@@ -53,7 +54,12 @@ const ReviewPage = ({ modalOff, reviewRepository, movieId, userId }) => {
       <div className={styles.review_container}>
         <h1 className={styles.header}>리뷰페이지</h1>
         <button onClick={onCloseClick}>x</button>
-        <StarRating userId={userId} setRate={onSetRate} />
+        <StarRating
+          userId={userId}
+          setRate={onSetRate}
+          value={review && review.rate}
+          onChange={onChange}
+        />
         <form ref={formRef}>
           <textarea
             ref={reviewRef}

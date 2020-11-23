@@ -4,32 +4,23 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import { useHistory } from "react-router-dom";
 const StarRating = ({ value, userId, setRate }) => {
   const history = useHistory();
-  // const [login, setLogin] = useState(false);
-  const [star, setStar] = useState(true);
+
+  const [star, setStar] = useState(0);
   const onChange = value => {
     console.log(`rate is ${value}`);
     if (!userId) {
       history.push("/login");
     } else {
-      setRate(value);
-      setStar(false);
+      setRate(value); //데이터베이스 전달
+      setStar(value); //별 표시
     }
   };
-  // useEffect(() => {
-  //   authService.onAuthChange(user => {
-  //     if (!user) {
-  //       setLogin(false);
-  //     } else {
-  //       setLogin(true);
-  //     }
-  //   });
-  // }, [authService, login]);
+
   return (
     <ReactStarsRating
       onChange={onChange}
-      value={value}
+      value={star ? star : value}
       secondaryColor={"lightgray"}
-      isEdit={star}
     />
   );
 };
