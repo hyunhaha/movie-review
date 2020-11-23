@@ -1,42 +1,84 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
-const ReviewPage = ({ modalOff, reviewRepository, login, userId }) => {
+const ReviewPage = ({
+  modalOff,
+  reviewRepository,
+  authService,
+  movieId,
+  userId,
+}) => {
+  // const historyState = useHistory().state;
+  // const [login, setLogin] = useState(false);
+
+  // const [userId, setUserId] = useState(historyState && historyState.state);
   const formRef = useRef();
   const reviewRef = useRef();
-  const [reviews, setReviews] = useState({});
   const [rate, setRate] = useState(null);
+  const [review, setReview] = useState();
+  // r const { review_content } = review;
+
+  // useEffect(() => {
+  //   authService.onAuthChange(user => {
+  //     if (user) {
+  //       console.log(login);
+  //       console.log(userId);
+
+  //       setUserId(user.uid);
+  //     } else {
+  //       console.log(login);
+
+  //       setLogin(false);
+  //     }
+  //   });
+  // }, [authService, userId, login]);
+
+  useEffect(() => {
+    if (!userId) return;
+    const stopSync = reviewRepository.syncCard(userId, reviews => {
+      setReview(reviews[movieId]);
+    });
+    return () => {
+      stopSync();
+    };
+  }, [reviewRepository, userId, movieId]);
   const onCloseClick = () => {
     modalOff();
   };
-  // const onChange = event => {
-  //   if (event.currentTarget === null) {
-  //     return;
-  //   }
+  const addOrUpdateCard = review => {
+    reviewRepository.saveReview(userId, review);
+  };
+
+  // const onSubmit = event => {
   //   event.preventDefault();
-  //   // updateReview();
+  //   const review = {
+  //     id: movieId,
+  //     movie_id: movieId,
+  //     edit_date: Date.now() || "",
+  //     review_content: reviewRef.current.value || "",
+  //     rate: rate,
+  //   };
+
+  //   addOrUpdateCard(review);
   // };
-  const onsubmit = event => {
+  const onChange = event => {
+    if (event.currentTarget === null) {
+      return;
+    }
     event.preventDefault();
     const review = {
-      id: Date.now(),
+      id: movieId,
+      movie_id: movieId,
       edit_date: Date.now() || "",
       review_content: reviewRef.current.value || "",
-      rate: rate,
+      rate: rate || 0,
     };
     console.log(review);
-    // reviewRef.current.value = review.review_content;
-    onAdd(review);
-  };
-  const onAdd = review => {
-    setReviews(reviews => {
-      const updated = { ...reviews };
-      updated[review.id] = review;
-      return updated;
-    });
-    reviewRepository.saveReview(userId, review);
+    addOrUpdateCard(review);
+    reviewRef.current.value = review.review_content;
   };
   const onSetRate = value => {
     setRate(value);
@@ -46,10 +88,15 @@ const ReviewPage = ({ modalOff, reviewRepository, login, userId }) => {
       <div className={styles.review_container}>
         <h1 className={styles.header}>리뷰페이지</h1>
         <button onClick={onCloseClick}>x</button>
-        <StarRating login={login} setRate={onSetRate} />
+        <StarRating userId={userId} setRate={onSetRate} />
         <form ref={formRef}>
-          <textarea ref={reviewRef} name="review" />
-          <button onClick={onsubmit}>저장하기</button>
+          <textarea
+            ref={reviewRef}
+            name="review_content"
+            value={review && review.review_content}
+            onChange={onChange}
+          ></textarea>
+          <button onClick={onChange}>저장하기</button>
         </form>
       </div>
     </div>

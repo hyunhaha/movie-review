@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
+
 import MovieList from "../movie_list/movie_list";
 import styles from "./search_result.module.css";
 const SearchResult = ({ movies }) => {

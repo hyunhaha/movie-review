@@ -1,15 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import ReactStarsRating from "react-awesome-stars-rating";
 import { useHistory } from "react-router-dom";
-const StarRating = ({ value, login, setRate }) => {
+const StarRating = ({ value, userId, setRate }) => {
   const history = useHistory();
   // const [login, setLogin] = useState(false);
   const [star, setStar] = useState(true);
   const onChange = value => {
     console.log(`rate is ${value}`);
-    if (login === false) {
+    if (!userId) {
       history.push("/login");
     } else {
       setRate(value);

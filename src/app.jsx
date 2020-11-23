@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import MovieDetail from "./components/movie_detail/movie_detail";
 import MainPage from "./components/main_page/main_page";
 import SearchResult from "./components/search_result/search_result";
@@ -38,6 +38,7 @@ function App({ authService, movieDB, reviewRepository }) {
               movieDB={movieDB}
               authService={authService}
               reviewRepository={reviewRepository}
+              userId={localStorage.getItem("userId")}
             />
           </Route>
           <Route exact path="/my-review">

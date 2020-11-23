@@ -1,31 +1,32 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import MovieList from "../movie_list/movie_list";
 import styles from "./main_page.module.css";
 const MainPage = ({ movieDB, authService }) => {
   const [movies, setMovies] = useState([]);
-  const [login, setLogin] = useState(false);
-  const historyState = useHistory().state;
-  const [userId, setUserId] = useState(historyState && historyState.id);
+
+  // const historyState = useHistory().state;
+  // const [userId, setUserId] = useState(historyState && historyState.id);
   useEffect(() => {
+    let mounted = true;
     movieDB
       .mostPopular() //
       .then(items => {
-        setMovies(items);
+        mounted && setMovies(items);
       });
+    return () => (mounted = false);
   }, [movieDB]);
-  useEffect(() => {
-    authService.onAuthChange(user => {
-      if (user) {
-        setLogin(true);
-        setUserId(user.uid);
-      } else {
-        setLogin(false);
-      }
-    });
-  });
+  // useEffect(() => {
+  //   let mounted = true;
+  //   authService.onAuthChange(user => {
+  //     if (user && mounted) {
+  //       setUserId(user.uid);
+  //     } else {
+  //     }
+  //   });
+  //   return () => (mounted = false);
+  // }, [authService]);
 
   return (
     <div className={styles.main}>

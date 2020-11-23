@@ -1,15 +1,21 @@
 import React from "react";
+import { useCallback } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./login.module.css";
 const Login = ({ authService }) => {
   const history = useHistory();
-  const gotoMain = userID => {
-    history.push({
-      pathname: "/",
-      state: { id: userID },
-    });
-  };
+  const gotoMain = useCallback(
+    userID => {
+      history.push({
+        pathname: "/",
+        state: { id: userID },
+      });
+      window.localStorage.setItem("userId", userID);
+    },
+    [history]
+  );
+  // console.log(useHistory().state);
   const onLogin = event => {
     authService //
       .login(event.currentTarget.textContent)
@@ -19,7 +25,7 @@ const Login = ({ authService }) => {
     authService.onAuthChange(user => {
       user && gotoMain(user.uid);
     });
-  });
+  }, [authService, gotoMain]);
   return (
     <section className={styles.login}>
       <header>로그인이 필요합니다</header>
@@ -31,9 +37,6 @@ const Login = ({ authService }) => {
               Google
             </button>
           </li>
-          {/* <li>
-            <button>Github</button>
-          </li> */}
         </ul>
       </section>
     </section>

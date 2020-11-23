@@ -19,6 +19,7 @@ const Header = ({ onSearch, authService }) => {
   };
   const onLogout = () => {
     authService.logout();
+    window.localStorage.setItem("userId", null);
   };
   useEffect(() => {
     authService.onAuthChange(user => {
