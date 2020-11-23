@@ -19,7 +19,8 @@ const Header = ({ onSearch, authService }) => {
   };
   const onLogout = () => {
     authService.logout();
-    window.localStorage.setItem("userId", null);
+    window.localStorage.removeItem("userId");
+    history.push("/");
   };
   useEffect(() => {
     authService.onAuthChange(user => {
@@ -31,7 +32,7 @@ const Header = ({ onSearch, authService }) => {
     });
   });
   const onLogoClick = event => {
-    console.log("logolclick");
+    event.preventDefault();
     history.push("/");
   };
   return (

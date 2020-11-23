@@ -23,7 +23,9 @@ const Login = ({ authService }) => {
   };
   useEffect(() => {
     authService.onAuthChange(user => {
-      user && gotoMain(user.uid);
+      if (user) {
+        gotoMain(user.uid);
+      }
     });
   }, [authService, gotoMain]);
   return (
@@ -37,6 +39,9 @@ const Login = ({ authService }) => {
               Google
             </button>
           </li>
+          {/* <li>
+            <button>Github</button>
+          </li> */}
         </ul>
       </section>
     </section>

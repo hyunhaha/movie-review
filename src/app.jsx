@@ -36,9 +36,7 @@ function App({ authService, movieDB, reviewRepository }) {
           <Route exact path="/detail/:id">
             <MovieDetail
               movieDB={movieDB}
-              authService={authService}
               reviewRepository={reviewRepository}
-              userId={localStorage.getItem("userId")}
             />
           </Route>
           <Route exact path="/my-review">
