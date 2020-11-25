@@ -3,36 +3,71 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
+  margin: 80px auto 0;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
 }
 
 .background_div {
-  width: 825px;
+  position: relative;
+  width: 100%;
+
   height: 100%;
+  padding: 300px 0px 0px;
 }
 .backgroundimage {
+  /* width: 100%;
+  height: 100%;
+  padding-top: 300px;
+  display: flex;
+  justify-content: center; */
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: black;
   width: 100%;
   height: 100%;
-  filter: blur(1px);
+  overflow: hidden;
 }
-.description {
-  align-items: initial;
-  width: 100%;
-  margin: 0 3.5%;
+.bg {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 825px;
+  height: 100%;
+  filter: none;
+}
+.backgroundDimmed {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(0, 0, 0, 0.35) 2%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+.posterPartWrap {
+  width: 700px;
+  padding-bottom: 20px;
 }
 .poster_title {
-  max-width: 400px;
-  margin: 0 auto;
-  padding-left: 280px;
+  width: 100%;
+  padding: 0 0 30px 200px;
   position: relative;
+  box-sizing: border-box;
 }
 .poster_div {
   position: absolute;
   top: -50px;
-  left: 80px;
+  left: 0px;
   width: 153px;
   height: 221px;
   border: 1px solid lightgray;
@@ -54,4 +89,69 @@ p {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   padding: 10px 0;
+}
+.reviewButton {
+  border-style: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(30, 82, 131);
+  color: white;
+}
+.reviewButton:hover {
+  background-color: rgb(183, 202, 219);
+  color: black;
+}
+.representativeWrap {
+  background-color: rgba(224, 224, 224, 0.247);
+  width: 100%;
+  padding: 20px 0;
+}
+.representative {
+  align-items: initial;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.description {
+  padding: 20px;
+}
+.basicInfo {
+  border-bottom: 1px solid lightgray;
+}
+.movieInfoTitle {
+  margin: 0;
+}
+.overviewOpen {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.overviewClose {
+  display: block;
+}
+.overviewReadmore {
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.actors {
+  width: 100%;
+}
+.actorsList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: flex-start;
+  margin: 4px -5px 16px;
+
+  overflow-y: hidden;
+  height: 240px;
 }

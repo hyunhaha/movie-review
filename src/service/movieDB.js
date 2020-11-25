@@ -31,5 +31,13 @@ class MovieDB {
     return result;
 
   };
+  async credits(id) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=ko-KR&api_key=70cdbfae5467ca38809a62f0d5f139ff`,
+      this.getRequestOptions
+    );
+    const result = await response.json();
+    return result;
+  }
 }
 export default MovieDB;

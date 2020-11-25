@@ -1,0 +1,36 @@
+.item {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+.imagestandard {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 145%;
+}
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  margin-top: 5px;
+  color: black;
+  font-size: 16px;
+}
+.myRate {
+  margin: 0;
+  margin-bottom: 5px;
+  color: black;
+  font-size: 12px;
+}

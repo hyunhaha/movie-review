@@ -4,7 +4,13 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
-const ReviewPage = ({ modalOff, reviewRepository, movieId, userId }) => {
+const ReviewPage = ({
+  modalOff,
+  reviewRepository,
+  movieId,
+  userId,
+  posterImagePath,
+}) => {
   const formRef = useRef();
   const reviewRef = useRef();
   const [rate, setRate] = useState(null);
@@ -12,12 +18,10 @@ const ReviewPage = ({ modalOff, reviewRepository, movieId, userId }) => {
 
   useEffect(() => {
     if (!userId) return;
-    const stopSync = reviewRepository.syncCard(userId, reviews => {
+    const stopSync = reviewRepository.syncReview(userId, reviews => {
       setReview(reviews[movieId]);
     });
-    return () => {
-      stopSync();
-    };
+    return () => stopSync();
   }, [reviewRepository, userId, movieId]);
   const onCloseClick = () => {
     modalOff();

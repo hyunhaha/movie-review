@@ -1,6 +1,6 @@
 import { firebaseDatabase } from './firebase';
 class ReviewRepository {
-  syncCard(userId, onUpdate) {
+  syncReview(userId, onUpdate) {
     const ref = firebaseDatabase.ref(`${userId}/reviews`);
     ref.on('value', snapshot => {
       const value = snapshot.val();
