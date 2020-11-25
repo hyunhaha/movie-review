@@ -23,6 +23,7 @@
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .list_searchbar {
   margin: 0 0 0 auto;
@@ -30,15 +31,34 @@
 .searchbar {
   padding-right: 30px;
 }
-.loginbutton {
+.loginButton {
   height: 40px;
+  cursor: pointer;
 }
-.logoutbutton {
+.loginCase {
   width: 50px;
   height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.myPageButton {
+  width: 30px;
+  height: 30px;
   border-style: none;
   border-radius: 50%;
   text-align: center;
   align-items: center;
   line-height: 40px;
+  cursor: pointer;
+  background: url(/images/profile.png) center center;
+  background-size: 90%;
+  padding: 0;
+}
+.myPageTitle {
+  font-size: 6px;
+}
+.reviewButton {
+  cursor: pointer;
 }

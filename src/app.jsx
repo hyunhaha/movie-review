@@ -40,7 +40,11 @@ function App({ authService, movieDB, reviewRepository }) {
             />
           </Route>
           <Route exact path="/my-review">
-            <MyReview reviewRepository={reviewRepository} movieDB={movieDB} />
+            <MyReview
+              reviewRepository={reviewRepository}
+              movieDB={movieDB}
+              authService={authService}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

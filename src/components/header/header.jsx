@@ -17,10 +17,13 @@ const Header = ({ onSearch, authService }) => {
   const onSearchWord = query => {
     onSearch(query);
   };
-  const onLogout = () => {
-    authService.logout();
-    window.localStorage.removeItem("userId");
-    history.push("/");
+  // const onLogout = () => {
+  //   authService.logout();
+  //   window.localStorage.removeItem("userId");
+  //   history.push("/");
+  // };
+  const goMyPage = () => {
+    history.push("/my-review");
   };
   useEffect(() => {
     authService.onAuthChange(user => {
@@ -52,18 +55,28 @@ const Header = ({ onSearch, authService }) => {
           </div>
         </li>
         <li>
-          <button
-            className={login ? styles.logoutbutton : styles.loginbutton}
-            onClick={login ? onLogout : gotoLoginPage}
-          >
-            {login ? "logout" : "login"}
-          </button>
+          {login ? (
+            <div className={styles.loginCase}>
+              <button
+                className={styles.myPageButton}
+                onClick={goMyPage}
+              ></button>
+              <div className={styles.myPageTitle}>My Page</div>
+            </div>
+          ) : (
+            <button className={styles.loginButton} onClick={gotoLoginPage}>
+              login
+            </button>
+          )}
         </li>
-        <li>
-          <button onClick={login ? gotoReveiwPage : gotoLoginPage}>
+        {/* <li>
+          <button
+            className={styles.reviewButton}
+            onClick={login ? gotoReveiwPage : gotoLoginPage}
+          >
             my review
           </button>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
