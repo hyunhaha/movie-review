@@ -56,22 +56,30 @@ const ReviewPage = ({
   return (
     <div className={styles.modal}>
       <div className={styles.review_container}>
+        <button className={styles.closeButton} onClick={onCloseClick}>
+          x
+        </button>
         <h1 className={styles.header}>리뷰페이지</h1>
-        <button onClick={onCloseClick}>x</button>
-        <StarRating
-          userId={userId}
-          setRate={onSetRate}
-          value={review && review.rate}
-          onChange={onChange}
-        />
-        <form ref={formRef}>
+        <div className={styles.star}>
+          <StarRating
+            userId={userId}
+            setRate={onSetRate}
+            value={review && review.rate}
+            onChange={onChange}
+          />
+        </div>
+        <form className={styles.form} ref={formRef}>
           <textarea
+            className={styles.reviewContent}
             ref={reviewRef}
             name="review_content"
             value={review && review.review_content}
             onChange={onChange}
+            placeholder="리뷰를 작성해주세요"
           ></textarea>
-          <button onClick={onChange}>저장하기</button>
+          <button className={styles.saveButton} onClick={onChange}>
+            저장하기
+          </button>
         </form>
       </div>
     </div>

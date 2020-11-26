@@ -14,7 +14,11 @@ const ReviewItem = ({ review, movieDB }) => {
   return (
     <li className={styles.item}>
       <div className={styles.imagestandard}>
-        <img className={styles.image} src={posterUrl} alt="poster" />
+        <img
+          className={styles.image}
+          src={detail.poster_path ? posterUrl : null}
+          alt="poster"
+        />
       </div>
       <h1 className={styles.title}>{detail.title}</h1>
       {/* <p>{review.review_content}</p> */}

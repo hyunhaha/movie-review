@@ -7,13 +7,10 @@ import styles from "./header.module.css";
 const Header = ({ onSearch, authService }) => {
   const history = useHistory();
   const [login, setLogin] = useState(false);
-
   const gotoLoginPage = () => {
     history.push("/login");
   };
-  const gotoReveiwPage = () => {
-    history.push("/my-review");
-  };
+
   const onSearchWord = query => {
     onSearch(query);
   };

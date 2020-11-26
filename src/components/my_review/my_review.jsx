@@ -26,9 +26,12 @@ const MyReview = ({ reviewRepository, movieDB, authService }) => {
     history.push("/");
   };
   return (
-    <div>
-      <h1 className={styles.title}>MyReview</h1>
-      <button onClick={onLogout}>logout</button>
+    <div className={styles.review}>
+      <button className={styles.logoutButton} onClick={onLogout}>
+        logout
+      </button>
+      <h1 className={styles.title}>My Reviews</h1>
+
       <ul className={styles.list}>
         {Object.keys(reviews).map(key => (
           <ReviewItem key={key} review={reviews[key]} movieDB={movieDB} />

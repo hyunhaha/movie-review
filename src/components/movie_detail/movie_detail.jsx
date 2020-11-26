@@ -14,7 +14,7 @@ const MovieDetail = ({ movieDB, reviewRepository }) => {
   const [userId, setUserId] = useState(null);
   const [actors, setActors] = useState([]);
   const posterURL = "https://image.tmdb.org/t/p/w500" + detail.poster_path;
-  const backimgURL = "https://image.tmdb.org/t/p/w1280" + detail.backdrop_path;
+  // const backimgURL = "https://image.tmdb.org/t/p/w1280" + detail.backdrop_path;
   const [readmore, setReadmore] = useState(true);
   const date_arr = detail.release_date && detail.release_date.split("-");
   console.log(date_arr);
