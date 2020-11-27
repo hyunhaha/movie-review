@@ -16,19 +16,16 @@ const MovieDetail = ({ movieDB, reviewRepository }) => {
   const posterURL = "https://image.tmdb.org/t/p/w500" + detail.poster_path;
   // const backimgURL = "https://image.tmdb.org/t/p/w1280" + detail.backdrop_path;
   const [readmore, setReadmore] = useState(true);
-  const date_arr = detail.release_date && detail.release_date.split("-");
-  console.log(date_arr);
   useEffect(() => {
     movieDB.movieDetail(params.id).then(result => {
       setDetail(result);
     });
     movieDB.credits(params.id).then(result => {
-      console.log(result);
       setActors(result.cast);
     });
     setUserId(localStorage.getItem("userId"));
   }, [movieDB, params.id]);
-  console.log(detail);
+
   const onReviewClick = () => {
     if (!userId) {
       history.push("/login");

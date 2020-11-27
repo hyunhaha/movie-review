@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const StarRating = ({ value, userId, setRate }) => {
   const history = useHistory();
 
-  const [star, setStar] = useState(0);
+  const [star, setStar] = useState(value);
   const onChange = value => {
     console.log(`rate is ${value}`);
     if (!userId) {
