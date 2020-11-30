@@ -15,7 +15,7 @@ const ImageUploadButton = ({ imageUploader, onFileChanged, name }) => {
     setLoading(false);
     onFileChanged({
       name: uploaded.original_filename,
-      url: uploaded.url,
+      url: uploaded.secure_url,
     });
   };
   return (
