@@ -52,9 +52,10 @@ const ReviewItem = ({
         </div>
 
         <h1 className={styles.title}>{detail.title}</h1>
-        {/* <p>{review.review_content}</p> */}
         <p className={styles.myRate}>나의평점 {review.rate}</p>
-        <button onClick={onClick}>리뷰 수정하기</button>
+        <button className={styles.button} onClick={onClick}>
+          리뷰열기
+        </button>
       </li>
       {modalState && (
         <ReviewPage
