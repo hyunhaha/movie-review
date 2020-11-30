@@ -12,38 +12,55 @@ const ReviewItem = ({
 }) => {
   const [detail, setDetail] = useState([]);
   const [modalState, setModalState] = useState(false);
+  const { id, fileURL } = review;
   const posterUrl = "https://image.tmdb.org/t/p/w500" + detail.poster_path;
+
   useEffect(() => {
-    movieDB.movieDetail(review.id).then(result => {
+    movieDB.movieDetail(id).then(result => {
       setDetail(result);
     });
-  }, [movieDB, review.id]);
+  }, [movieDB, id]);
+
   const onClick = () => {
     setModalState(true);
   };
+
   const modalOff = () => {
     setModalState(false);
   };
 
   return (
     <div className={styles.itemWrap}>
-      <li className={styles.item} onClick={onClick}>
-        <div className={styles.imagestandard}>
+      <li className={styles.item}>
+        <div className={styles.posterWrap}>
           <img
-            className={styles.image}
+            className={styles.poster}
             src={detail.poster_path ? posterUrl : null}
             alt="poster"
           />
+          {fileURL && (
+            <div className={styles.reviewimgWrap}>
+              <div className={styles.photoCard}>
+                <img
+                  className={styles.reviewImg}
+                  src={review.fileURL}
+                  alt="review"
+                />
+              </div>
+            </div>
+          )}
         </div>
+
         <h1 className={styles.title}>{detail.title}</h1>
         {/* <p>{review.review_content}</p> */}
         <p className={styles.myRate}>나의평점 {review.rate}</p>
+        <button onClick={onClick}>리뷰 수정하기</button>
       </li>
       {modalState && (
         <ReviewPage
           modalOff={modalOff}
           reviewRepository={reviewRepository}
-          movieId={review.movie_id}
+          movieId={id}
           userId={userId}
           FileInput={FileInput}
         />

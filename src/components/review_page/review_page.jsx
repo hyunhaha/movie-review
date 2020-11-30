@@ -5,7 +5,6 @@ import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
 import cogoToast from "cogo-toast";
-import ImageUploadButton from "../image_upload_button/image_upload_button";
 
 const ReviewPage = ({
   modalOff,
@@ -68,7 +67,9 @@ const ReviewPage = ({
 
   const onSaveClick = event => {
     event.preventDefault();
+    setImageFile({ fileName: null, fileURL: null });
     setReviewData();
+
     const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
       onClick: () => {
         hide();

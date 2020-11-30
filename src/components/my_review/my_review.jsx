@@ -15,18 +15,19 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
     if (!userId) {
       return;
     }
-
     const stopSync = reviewRepository.syncReview(userId, reviews => {
       setReviews(reviews);
     });
-
+    console.log("reviews update");
     return () => stopSync();
   }, [reviewRepository, userId]);
+
   const onLogout = () => {
     authService.logout();
     window.localStorage.removeItem("userId");
     history.push("/");
   };
+
   return (
     <div className={styles.review}>
       <button className={styles.logoutButton} onClick={onLogout}>
