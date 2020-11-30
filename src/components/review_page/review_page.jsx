@@ -5,18 +5,20 @@ import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
 import cogoToast from "cogo-toast";
+import ImageUploadButton from "../image_upload_button/image_upload_button";
 
 const ReviewPage = ({
   modalOff,
   reviewRepository,
   movieId,
   userId,
-  posterImagePath,
+  FileInput,
 }) => {
   const formRef = useRef();
   const reviewRef = useRef();
   const [rate, setRate] = useState(0);
   const [review, setReview] = useState();
+  const [imageFile, setImageFile] = useState({ fileName: null, fileURL: null });
 
   useEffect(() => {
     if (!userId) return;
@@ -27,16 +29,19 @@ const ReviewPage = ({
 
     return () => stopSync();
   }, [reviewRepository, userId, movieId]);
-  const onCloseClick = () => {
-    modalOff();
-  };
 
   useEffect(() => {
     setRate(review && review.rate);
   }, [review]);
+
+  const onCloseClick = () => {
+    modalOff();
+  };
+
   const addOrUpdateCard = review => {
     reviewRepository.saveReview(userId, review);
   };
+
   const setReviewData = () => {
     const review = {
       id: movieId,
@@ -44,10 +49,15 @@ const ReviewPage = ({
       edit_date: Date.now() || "",
       review_content: reviewRef.current.value || "",
       rate: rate,
+      fileName: imageFile.fileName || "",
+      fileURL: imageFile.fileURL || "",
     };
+    console.log(review);
     addOrUpdateCard(review);
+
     reviewRef.current.value = review.review_content;
   };
+
   const onChange = event => {
     if (event.currentTarget === null) {
       return;
@@ -55,6 +65,7 @@ const ReviewPage = ({
     event.preventDefault();
     setReviewData();
   };
+
   const onSaveClick = event => {
     event.preventDefault();
     setReviewData();
@@ -65,10 +76,17 @@ const ReviewPage = ({
       position: "top-center",
     });
   };
+
   const onSetRate = value => {
     setRate(value);
   };
 
+  const onFileChanged = file => {
+    setImageFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
   return (
     <div className={styles.modal}>
       <div className={styles.review_container}>
@@ -93,6 +111,7 @@ const ReviewPage = ({
             onChange={onChange}
             placeholder="리뷰를 작성해주세요"
           ></textarea>
+          <FileInput onFileChanged={onFileChanged} name={imageFile.fileName} />
           <button className={styles.saveButton} onClick={onSaveClick}>
             저장하기
           </button>

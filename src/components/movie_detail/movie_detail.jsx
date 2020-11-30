@@ -6,7 +6,7 @@ import ReviewPage from "../review_page/review_page";
 import Actor from "../actor/actor";
 import styles from "./movie_detail.module.css";
 
-const MovieDetail = ({ movieDB, reviewRepository }) => {
+const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
   const params = useParams();
   const history = useHistory();
   const [detail, setDetail] = useState([]);
@@ -136,6 +136,7 @@ const MovieDetail = ({ movieDB, reviewRepository }) => {
           reviewRepository={reviewRepository}
           movieId={params.id}
           userId={userId}
+          FileInput={FileInput}
         />
       )}
     </div>

@@ -3,7 +3,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ReviewPage from "../review_page/review_page";
 import styles from "./review_item.module.css";
-const ReviewItem = ({ review, movieDB, reviewRepository, userId }) => {
+const ReviewItem = ({
+  review,
+  movieDB,
+  reviewRepository,
+  userId,
+  FileInput,
+}) => {
   const [detail, setDetail] = useState([]);
   const [modalState, setModalState] = useState(false);
   const posterUrl = "https://image.tmdb.org/t/p/w500" + detail.poster_path;
@@ -39,6 +45,7 @@ const ReviewItem = ({ review, movieDB, reviewRepository, userId }) => {
           reviewRepository={reviewRepository}
           movieId={review.movie_id}
           userId={userId}
+          FileInput={FileInput}
         />
       )}
     </div>

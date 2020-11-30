@@ -8,7 +8,7 @@ import Login from "./components/login/login";
 import Header from "./components/header/header";
 import styles from "./app.module.css";
 import MyReview from "./components/my_review/my_review";
-function App({ authService, movieDB, reviewRepository }) {
+function App({ authService, movieDB, reviewRepository, FileInput }) {
   const [movies, setMovies] = useState([]);
 
   const onSearch = query => {
@@ -37,6 +37,7 @@ function App({ authService, movieDB, reviewRepository }) {
             <MovieDetail
               movieDB={movieDB}
               reviewRepository={reviewRepository}
+              FileInput={FileInput}
             />
           </Route>
           <Route exact path="/my-review">
@@ -44,6 +45,7 @@ function App({ authService, movieDB, reviewRepository }) {
               reviewRepository={reviewRepository}
               movieDB={movieDB}
               authService={authService}
+              FileInput={FileInput}
             />
           </Route>
         </Switch>

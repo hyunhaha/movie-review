@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import ReviewItem from "../review_item/review_item";
 import styles from "./my_review.module.css";
 
-const MyReview = ({ reviewRepository, movieDB, authService }) => {
+const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
   const [reviews, setReviews] = useState({});
   const [userId, setUserId] = useState();
   const history = useHistory();
@@ -42,6 +42,7 @@ const MyReview = ({ reviewRepository, movieDB, authService }) => {
             movieDB={movieDB}
             reviewRepository={reviewRepository}
             userId={userId}
+            FileInput={FileInput}
           />
         ))}
       </ul>
