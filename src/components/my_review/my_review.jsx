@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Loading from "../../loading/loading";
+import Loading from "../loading/loading";
 import ReviewItem from "../review_item/review_item";
 import styles from "./my_review.module.css";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import Loading from "../../loading/loading";
+import Loading from "../loading/loading";
 import styles from "./image_upload_button.module.css";
 const ImageUploadButton = ({ imageUploader, onFileChanged, name }) => {
   const inputRef = useRef();

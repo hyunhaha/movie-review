@@ -5,7 +5,7 @@ import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
 import cogoToast from "cogo-toast";
-import Loading from "../../loading/loading";
+import Loading from "../loading/loading";
 
 const ReviewPage = ({
   modalOff,
