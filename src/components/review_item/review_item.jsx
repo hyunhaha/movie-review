@@ -9,6 +9,7 @@ const ReviewItem = ({
   reviewRepository,
   userId,
   FileInput,
+  onDelete,
 }) => {
   const [detail, setDetail] = useState([]);
   const [modalState, setModalState] = useState(false);
@@ -27,6 +28,9 @@ const ReviewItem = ({
 
   const modalOff = () => {
     setModalState(false);
+  };
+  const onDeleteClick = () => {
+    onDelete(review);
   };
 
   return (
@@ -56,6 +60,7 @@ const ReviewItem = ({
         <button className={styles.button} onClick={onClick}>
           리뷰열기
         </button>
+        <button onClick={onDeleteClick}>삭제</button>
       </li>
       {modalState && (
         <ReviewPage

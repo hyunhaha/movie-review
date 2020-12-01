@@ -30,7 +30,14 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
     window.localStorage.removeItem("userId");
     history.push("/");
   };
-
+  const onDeleteClick = review => {
+    setReviews(reviews => {
+      const updated = { ...reviews };
+      delete updated[review.id];
+      return updated;
+    });
+    reviewRepository.removeReview(userId, review);
+  };
   return (
     <div className={styles.review}>
       <button className={styles.logoutButton} onClick={onLogout}>
@@ -49,6 +56,7 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
               reviewRepository={reviewRepository}
               userId={userId}
               FileInput={FileInput}
+              onDelete={onDeleteClick}
             />
           ))}
         </ul>

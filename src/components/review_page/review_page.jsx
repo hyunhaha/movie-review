@@ -92,10 +92,10 @@ const ReviewPage = ({
       fileURL: file.url,
     });
   };
-  const onDeleteClick = event => {
-    event.preventDefault();
-    reviewRepository.removeReview(userId, review);
-  };
+  // const onDeleteClick = event => {
+  //   event.preventDefault();
+  //   reviewRepository.removeReview(userId, review);
+  // };
   return (
     <div className={styles.modal}>
       <div className={styles.review_container}>
@@ -124,9 +124,9 @@ const ReviewPage = ({
           <button className={styles.saveButton} onClick={onSaveClick}>
             저장하기
           </button>
-          <button className={styles.deleteButton} onClick={onDeleteClick}>
+          {/* <button className={styles.deleteButton} onClick={onDeleteClick}>
             리뷰 삭제하기
-          </button>
+          </button> */}
         </form>
         {loading && (
           <div className={styles.loading}>

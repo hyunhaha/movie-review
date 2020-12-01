@@ -12,7 +12,7 @@ class ReviewRepository {
     firebaseDatabase.ref(`${userId}/reviews/${review.id}`).set(review);
   }
   removeReview(userId, review) {
-    firebaseDatabase.ref(`${userId}/review/${review.id}`).remove();
+    firebaseDatabase.ref(`${userId}/reviews/${review.id}`).remove();
   }
 }
 export default ReviewRepository;
