@@ -5,6 +5,7 @@ import { useRef } from "react";
 import StarRating from "../star_rating/star_rating";
 import styles from "./review_page.module.css";
 import cogoToast from "cogo-toast";
+import Loading from "../../loading/loading";
 
 const ReviewPage = ({
   modalOff,
@@ -18,28 +19,21 @@ const ReviewPage = ({
   const [rate, setRate] = useState(0);
   const [review, setReview] = useState();
   const [imageFile, setImageFile] = useState({ fileName: null, fileURL: null });
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (!userId) return;
-
+    setLoading(true);
     const stopSync = reviewRepository.syncReview(userId, reviews => {
       setReview(reviews[movieId]);
+      setLoading(false);
     });
-
     return () => stopSync();
   }, [reviewRepository, userId, movieId]);
+  console.log(imageFile);
 
   useEffect(() => {
     setRate(review && review.rate);
   }, [review]);
-
-  const onCloseClick = () => {
-    modalOff();
-  };
-
-  const addOrUpdateCard = review => {
-    reviewRepository.saveReview(userId, review);
-  };
 
   const setReviewData = () => {
     const review = {
@@ -65,9 +59,15 @@ const ReviewPage = ({
     setReviewData();
   };
 
+  const addOrUpdateCard = review => {
+    setReview();
+    reviewRepository.saveReview(userId, review);
+  };
+
   const onSaveClick = event => {
     event.preventDefault();
-    setImageFile({ fileName: null, fileURL: null });
+    // review &&
+    //   setImageFile({ fileName: review.fileName, fileURL: review.fileURL });
     setReviewData();
 
     const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
@@ -76,6 +76,10 @@ const ReviewPage = ({
       },
       position: "top-center",
     });
+  };
+
+  const onCloseClick = () => {
+    modalOff();
   };
 
   const onSetRate = value => {
@@ -87,6 +91,10 @@ const ReviewPage = ({
       fileName: file.name,
       fileURL: file.url,
     });
+  };
+  const onDeleteClick = event => {
+    event.preventDefault();
+    reviewRepository.removeReview(userId, review);
   };
   return (
     <div className={styles.modal}>
@@ -116,7 +124,15 @@ const ReviewPage = ({
           <button className={styles.saveButton} onClick={onSaveClick}>
             저장하기
           </button>
+          <button className={styles.deleteButton} onClick={onDeleteClick}>
+            리뷰 삭제하기
+          </button>
         </form>
+        {loading && (
+          <div className={styles.loading}>
+            <Loading />
+          </div>
+        )}
       </div>
     </div>
   );

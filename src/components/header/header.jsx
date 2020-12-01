@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import SearchBar from "../search_bar/search_bar";
 import styles from "./header.module.css";
+
 const Header = ({ onSearch, authService }) => {
   const history = useHistory();
   const [login, setLogin] = useState(false);

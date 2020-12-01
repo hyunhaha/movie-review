@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import Loading from "../../loading/loading";
 import styles from "./image_upload_button.module.css";
 const ImageUploadButton = ({ imageUploader, onFileChanged, name }) => {
   const inputRef = useRef();
@@ -33,7 +34,7 @@ const ImageUploadButton = ({ imageUploader, onFileChanged, name }) => {
           {name ? name : "이미지 업로드"}
         </button>
       )}
-      {loading && <div className={styles.loading}></div>}
+      {loading && <Loading />}
     </div>
   );
 };
