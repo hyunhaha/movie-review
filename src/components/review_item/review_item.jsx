@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ReviewPage from "../review_page/review_page";
 import styles from "./review_item.module.css";
+
 const ReviewItem = ({
   review,
   movieDB,
@@ -57,12 +58,14 @@ const ReviewItem = ({
 
         <h1 className={styles.title}>{detail.title}</h1>
         <p className={styles.myRate}>나의평점 {review.rate}</p>
-        <button className={styles.button} onClick={onClick}>
-          리뷰열기
-        </button>
-        <button className={styles.button} onClick={onDeleteClick}>
-          삭제
-        </button>
+        <div className={styles.buttonWrap}>
+          <button className={styles.button} onClick={onClick}>
+            리뷰열기
+          </button>
+          <button className={styles.deleteButton} onClick={onDeleteClick}>
+            <i className="far fa-trash-alt"></i>
+          </button>
+        </div>
       </li>
       {modalState && (
         <ReviewPage

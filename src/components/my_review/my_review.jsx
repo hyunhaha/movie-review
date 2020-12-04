@@ -44,6 +44,7 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
         logout
       </button>
       <h1 className={styles.title}>My Reviews</h1>
+      <p>영화 포스터에 마우스를 올리면 업로드한 이미지를 볼 수 있습니다.</p>
       {loading ? (
         <Loading />
       ) : (

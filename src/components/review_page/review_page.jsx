@@ -16,7 +16,7 @@ const ReviewPage = ({
 }) => {
   const formRef = useRef();
   const reviewRef = useRef();
-  const [rate, setRate] = useState(0);
+  const [rate, setRate] = useState(null);
   const [review, setReview] = useState();
   const [imageFile, setImageFile] = useState({ fileName: null, fileURL: null });
   const [loading, setLoading] = useState(false);
@@ -29,10 +29,12 @@ const ReviewPage = ({
     });
     return () => stopSync();
   }, [reviewRepository, userId, movieId]);
-  console.log(imageFile);
 
   useEffect(() => {
     setRate(review && review.rate);
+    setImageFile(
+      review && { fileName: review.fileName, fileURL: review.fileURL }
+    );
   }, [review]);
 
   const setReviewData = () => {
@@ -41,14 +43,34 @@ const ReviewPage = ({
       movie_id: movieId,
       edit_date: Date.now() || "",
       review_content: reviewRef.current.value || "",
-      rate: rate,
+      rate: rate || null,
       fileName: imageFile.fileName || "",
       fileURL: imageFile.fileURL || "",
     };
-    console.log(review);
     addOrUpdateCard(review);
+    // reviewRef.current.value = review.review_content;
+  };
+  const onFileChanged = file => {
+    setImageFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
-    reviewRef.current.value = review.review_content;
+  const onSaveClick = event => {
+    event.preventDefault();
+    setReviewData();
+    const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
+      onClick: () => {
+        hide();
+      },
+      position: "top-center",
+    });
+  };
+
+  const addOrUpdateCard = review => {
+    setReview();
+    reviewRepository.saveReview(userId, review);
   };
 
   const onChange = event => {
@@ -59,25 +81,6 @@ const ReviewPage = ({
     setReviewData();
   };
 
-  const addOrUpdateCard = review => {
-    setReview();
-    reviewRepository.saveReview(userId, review);
-  };
-
-  const onSaveClick = event => {
-    event.preventDefault();
-    // review &&
-    //   setImageFile({ fileName: review.fileName, fileURL: review.fileURL });
-    setReviewData();
-
-    const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
-      onClick: () => {
-        hide();
-      },
-      position: "top-center",
-    });
-  };
-
   const onCloseClick = () => {
     modalOff();
   };
@@ -86,16 +89,6 @@ const ReviewPage = ({
     setRate(value);
   };
 
-  const onFileChanged = file => {
-    setImageFile({
-      fileName: file.name,
-      fileURL: file.url,
-    });
-  };
-  // const onDeleteClick = event => {
-  //   event.preventDefault();
-  //   reviewRepository.removeReview(userId, review);
-  // };
   return (
     <div className={styles.modal}>
       <div className={styles.review_container}>
@@ -120,13 +113,13 @@ const ReviewPage = ({
             onChange={onChange}
             placeholder="리뷰를 작성해주세요"
           ></textarea>
-          <FileInput onFileChanged={onFileChanged} name={imageFile.fileName} />
+          <FileInput
+            onFileChanged={onFileChanged}
+            name={review && review.fileName}
+          />
           <button className={styles.saveButton} onClick={onSaveClick}>
             저장하기
           </button>
-          {/* <button className={styles.deleteButton} onClick={onDeleteClick}>
-            리뷰 삭제하기
-          </button> */}
         </form>
         {loading && (
           <div className={styles.loading}>
