@@ -60,7 +60,9 @@ const ReviewItem = ({
         <button className={styles.button} onClick={onClick}>
           리뷰열기
         </button>
-        <button onClick={onDeleteClick}>삭제</button>
+        <button className={styles.button} onClick={onDeleteClick}>
+          삭제
+        </button>
       </li>
       {modalState && (
         <ReviewPage

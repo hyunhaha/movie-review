@@ -73,10 +73,11 @@
   padding: 10px 40px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(30, 82, 131);
-  color: white;
+  background-color: #96bb7c;
+  color: #f5f1da;
+  margin-bottom: 5px;
 }
 .button:hover {
-  background-color: rgb(183, 202, 219);
-  color: black;
+  background-color: #eebb4d;
+  color: #f5f1da;
 }

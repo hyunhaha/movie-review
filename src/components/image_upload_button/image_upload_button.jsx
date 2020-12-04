@@ -31,7 +31,7 @@ const ImageUploadButton = ({ imageUploader, onFileChanged, name }) => {
       />
       {!loading && (
         <button className={styles.button} onClick={onButtonClick}>
-          {name ? name : "이미지 업로드"}
+          {name ? name : "포토카드 이미지 업로드"}
         </button>
       )}
       {loading && <Loading />}

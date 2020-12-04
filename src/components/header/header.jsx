@@ -8,21 +8,7 @@ import styles from "./header.module.css";
 const Header = ({ onSearch, authService }) => {
   const history = useHistory();
   const [login, setLogin] = useState(false);
-  const gotoLoginPage = () => {
-    history.push("/login");
-  };
-
-  const onSearchWord = query => {
-    onSearch(query);
-  };
-  // const onLogout = () => {
-  //   authService.logout();
-  //   window.localStorage.removeItem("userId");
-  //   history.push("/");
-  // };
-  const goMyPage = () => {
-    history.push("/my-review");
-  };
+  const [headerOpacity, setHeaderOpacity] = useState("transparent");
   useEffect(() => {
     authService.onAuthChange(user => {
       if (!user) {
@@ -32,12 +18,41 @@ const Header = ({ onSearch, authService }) => {
       }
     });
   });
+  useEffect(() => {
+    const onScroll = () => {
+      const position = window.scrollY > 80;
+      if (position) {
+        setHeaderOpacity("solid");
+      } else {
+        setHeaderOpacity("transparent");
+      }
+    };
+    document.addEventListener("scroll", onScroll);
+    return () => {
+      document.addEventListener("scroll", onScroll);
+    };
+  });
+  const gotoLoginPage = () => {
+    history.push("/login");
+  };
+
+  const onSearchWord = query => {
+    onSearch(query);
+  };
+
+  const goMyPage = () => {
+    history.push("/my-review");
+  };
+
   const onLogoClick = event => {
     event.preventDefault();
     history.push("/");
   };
+
   return (
-    <div className={styles.header}>
+    <div
+      className={headerOpacity === "solid" ? styles.header : styles.transparent}
+    >
       <ul className={styles.list}>
         <li className={styles.list_logo}>
           <img
