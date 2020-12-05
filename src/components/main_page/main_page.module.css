@@ -11,3 +11,8 @@
 .list {
   padding: 0;
 }
+@media screen and (max-width: 425px) {
+  .main {
+    margin-top: 0;
+  }
+}

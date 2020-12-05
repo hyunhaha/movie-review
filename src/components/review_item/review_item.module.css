@@ -87,6 +87,7 @@
   color: #f5f1da;
 }
 .deleteButton {
+  width: 40px;
   border-style: none;
   background-color: #96bb7c;
   color: #f5f1da;

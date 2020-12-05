@@ -74,3 +74,14 @@
 .reviewButton {
   cursor: pointer;
 }
+@media screen and (max-width: 425px) {
+  .header {
+    display: none;
+  }
+  .transparent {
+    display: none;
+  }
+  .list_logo {
+    height: 80px;
+  }
+}

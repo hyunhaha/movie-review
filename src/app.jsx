@@ -8,6 +8,7 @@ import Login from "./components/login/login";
 import Header from "./components/header/header";
 import styles from "./app.module.css";
 import MyReview from "./components/my_review/my_review";
+import Footer from "./components/footer/footer";
 function App({ authService, movieDB, reviewRepository, FileInput }) {
   const [movies, setMovies] = useState([]);
 
@@ -49,7 +50,8 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
             />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter>{" "}
+      <Footer />
     </div>
   );
 }

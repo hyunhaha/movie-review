@@ -57,3 +57,10 @@
     line-height: 1.6em;
   }
 }
+@media screen and (max-width: 425px) {
+  .item {
+    width: 32%;
+  }
+  .rank {
+  }
+}
