@@ -32,7 +32,7 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
             <Login authService={authService} />
           </Route>
           <Route exact path="/search-result">
-            <SearchResult movies={movies} />
+            <SearchResult movies={movies} movieDB={movieDB} />
           </Route>
           <Route exact path="/detail/:id">
             <MovieDetail
@@ -50,8 +50,8 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
             />
           </Route>
         </Switch>
-      </BrowserRouter>{" "}
-      <Footer />
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

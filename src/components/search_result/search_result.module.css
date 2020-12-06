@@ -1,3 +1,11 @@
 .movie {
   margin-top: 80px;
+  padding: 0 3.5%;
+}
+.searchbarWrap {
+}
+@media screen and (max-width: 425px) {
+  .movie {
+    margin-top: 20px;
+  }
 }

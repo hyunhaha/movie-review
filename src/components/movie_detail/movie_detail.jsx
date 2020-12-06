@@ -20,12 +20,13 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
     movieDB.movieDetail(params.id).then(result => {
       setDetail(result);
     });
+
     movieDB.credits(params.id).then(result => {
       setActors(result.cast);
     });
     setUserId(localStorage.getItem("userId"));
   }, [movieDB, params.id]);
-
+  console.log(detail);
   const onReviewClick = () => {
     if (!userId) {
       history.push("/login");
@@ -78,9 +79,12 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
           </div>
           <h1 className={styles.title}>{detail.title}</h1>
           <p className={styles.movie_detail}>{`${
-            detail.release_date && detail.release_date.split("-")[0]
+            detail.release_date ? detail.release_date.split("-")[0] : ""
           } ・ ${
-            detail.production_countries && detail.production_countries[0].name
+            detail.production_countries &&
+            (detail.production_countries[0]
+              ? detail.production_countries[0].name
+              : "")
           } ・ ${detail.genres && detail.genres[0].name}`}</p>
 
           <p className={styles.rating}>{`평점 ${detail.vote_average / 2}`}</p>
@@ -99,7 +103,9 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
                 detail.release_date && detail.release_date.split("-")[0]
               } ・ ${
                 detail.production_countries &&
-                detail.production_countries[0].name
+                (detail.production_countries[0]
+                  ? detail.production_countries[0].name
+                  : "")
               } ・ ${detail.genres && detail.genres[0].name}`}</p>
               <p>
                 {`${Math.round(detail.runtime / 60)}시간 
