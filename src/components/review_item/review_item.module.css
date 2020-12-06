@@ -5,7 +5,7 @@
   position: relative;
   display: inline-block;
   width: 20%;
-  padding: 0 5px;
+  padding: 0 5px 10px 5px;
   box-sizing: border-box;
 }
 .posterWrap {
@@ -75,7 +75,7 @@
   border-style: none;
   font-size: 1.2em;
   font-weight: bold;
-  padding: 10px 30px;
+
   border-radius: 5px;
   cursor: pointer;
   background-color: #96bb7c;
@@ -102,5 +102,10 @@
   }
   .button {
     font-size: 1em;
+  }
+}
+@media screen and (max-width: 425px) {
+  .item {
+    width: 32%;
   }
 }

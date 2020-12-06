@@ -6,12 +6,12 @@ import SearchBar from "../search_bar/search_bar";
 import styles from "./search_result.module.css";
 const SearchResult = ({ movies, movieDB }) => {
   const [searchbar, setSearchbar] = useState(
-    window.innerWidth < 425 ? true : false
+    window.innerWidth <= 425 ? true : false
   );
   const [moviesInSmall, setMoviesInSmall] = useState([]);
   useEffect(() => {
     const handleResize = () => {
-      const windowWidth = window.innerWidth < 425;
+      const windowWidth = window.innerWidth <= 425;
       if (windowWidth) {
         setSearchbar(true);
       } else {

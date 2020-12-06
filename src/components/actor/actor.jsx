@@ -12,17 +12,7 @@ const Actor = ({ actor }) => {
             backgroundSize: "100%",
           }
         }
-      >
-        {/* <img
-          className={styles.image}
-          src={
-            actor.profile_path
-              ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-              : null
-          }
-          alt=""
-        /> */}
-      </div>
+      ></div>
       <div className={styles.actorDetail}>
         <div className={styles.name}>{actor.name}</div>
         <div className={styles.character}>{`${actor.character} 역`}</div>

@@ -32,9 +32,11 @@ const ReviewPage = ({
 
   useEffect(() => {
     setRate(review && review.rate);
-    setImageFile(
-      review && { fileName: review.fileName, fileURL: review.fileURL }
-    );
+    review &&
+      setImageFile({
+        fileName: review.fileName || "",
+        fileURL: review.fileURL || "",
+      });
   }, [review]);
 
   const setReviewData = () => {
