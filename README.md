@@ -1,5 +1,5 @@
 영화리뷰 웹어플리케이션
 
-React, PostCSS
+React, Firebase, cloudinary, PostCSS, movie DB API,
 
-DEMO:https://5fc6197d7ad84d1d62c8632f--hh-movie-review.netlify.app/
+DEMO:https://5fcf507d99dc7aa3d3e8ef7f--hh-movie-review.netlify.app
