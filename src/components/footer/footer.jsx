@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./footer.module.css";
 
-const Footer = props => {
+const Footer = ({ authService }) => {
   const history = useHistory();
+  const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    authService.onAuthChange(user => {
+      if (!user) {
+        setLogin(false);
+      } else {
+        setLogin(true);
+      }
+    });
+  });
   const onHomeClick = event => {
     event.preventDefault();
     history.push("/");
@@ -14,7 +25,11 @@ const Footer = props => {
   };
   const onMyClick = event => {
     event.preventDefault();
-    history.push("/my-review");
+    if (login) {
+      history.push("/my-review");
+    } else {
+      history.push("/login");
+    }
   };
   return (
     <div className={styles.footer}>

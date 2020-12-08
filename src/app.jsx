@@ -50,7 +50,7 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
             />
           </Route>
         </Switch>
-        <Footer />
+        <Footer authService={authService} />
       </BrowserRouter>
     </div>
   );

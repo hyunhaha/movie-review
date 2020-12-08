@@ -22,7 +22,7 @@ const SearchResult = ({ movies, movieDB }) => {
     return () => {
       window.addEventListener("resize", handleResize);
     };
-  });
+  }, []);
   const onSearch = query => {
     movieDB
       .search(query) //

@@ -31,7 +31,7 @@ const Header = ({ onSearch, authService }) => {
     return () => {
       document.addEventListener("scroll", onScroll);
     };
-  });
+  }, []);
   const gotoLoginPage = () => {
     history.push("/login");
   };

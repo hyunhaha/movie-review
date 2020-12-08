@@ -119,6 +119,9 @@ const ReviewPage = ({
             onFileChanged={onFileChanged}
             name={review && review.fileName}
           />
+          <p className={styles.description}>
+            업로드한 이미지는 my page에서 볼 수 있습니다
+          </p>
           <button className={styles.saveButton} onClick={onSaveClick}>
             저장하기
           </button>

@@ -24,7 +24,7 @@ class MovieDB {
   }
   async movieDetail(id) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&api_key=70cdbfae5467ca38809a62f0d5f139ff`,
+      `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&api_key=${this.key}`,
       this.getRequestOptions
     );
     const result = await response.json();
@@ -33,11 +33,20 @@ class MovieDB {
   };
   async credits(id) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/credits?language=ko-KR&api_key=70cdbfae5467ca38809a62f0d5f139ff`,
+      `https://api.themoviedb.org/3/movie/${id}/credits?language=ko-KR&api_key=${this.key}`,
       this.getRequestOptions
     );
     const result = await response.json();
     return result;
   }
+  async mostTvPopular() {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/popular?language=ko-KR&sort_by=popularity.desc&region=KR&api_key=${this.key}`,
+      this.getRequestOptions
+    );
+    const result = await response.json();
+    return result.results;
+  }
+
 }
 export default MovieDB;
