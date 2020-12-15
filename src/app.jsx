@@ -34,7 +34,14 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
           <Route exact path="/search-result">
             <SearchResult movies={movies} movieDB={movieDB} />
           </Route>
-          <Route exact path="/detail/:id">
+          <Route exact path="/movie/detail/:id">
+            <MovieDetail
+              movieDB={movieDB}
+              reviewRepository={reviewRepository}
+              FileInput={FileInput}
+            />
+          </Route>
+          <Route exact path="/tv/detail/:id">
             <MovieDetail
               movieDB={movieDB}
               reviewRepository={reviewRepository}

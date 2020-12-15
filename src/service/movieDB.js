@@ -46,6 +46,23 @@ class MovieDB {
     );
     const result = await response.json();
     return result.results;
+  };
+  async tvDetail(id) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}?language=ko-KR&api_key=${this.key}`,
+      this.getRequestOptions
+    );
+    const result = await response.json();
+    return result;
+
+  };
+  async tvCredits(id) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}/credits?language=ko-KR&api_key=${this.key}`,
+      this.getRequestOptions
+    );
+    const result = await response.json();
+    return result;
   }
 
 }

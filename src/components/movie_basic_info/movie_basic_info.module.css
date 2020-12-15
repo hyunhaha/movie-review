@@ -1,0 +1,21 @@
+.basicInfo {
+  border-bottom: 1px solid lightgray;
+}
+.movieInfoTitle {
+  margin: 0;
+}
+.overviewOpen {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.overviewClose {
+  display: block;
+}
+.overviewReadmore {
+  text-align: center;
+  cursor: pointer;
+  padding-bottom: 10px;
+  font-weight: bold;
+}

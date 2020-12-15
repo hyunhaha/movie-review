@@ -1,0 +1,30 @@
+.background_div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 300px 0px 0px;
+  display: flex;
+  justify-content: center;
+  background: black;
+}
+.backgroundimage {
+  position: absolute;
+  top: 0px;
+  left: center;
+  width: 825px;
+  height: 100%;
+  background-size: 100%;
+}
+.backgroundDimmed {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient(
+    -180deg,
+    rgba(0, 0, 0, 0.35) 2%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}

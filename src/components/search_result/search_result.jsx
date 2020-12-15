@@ -10,6 +10,7 @@ const SearchResult = ({ movies, movieDB }) => {
   );
   const [moviesInSmall, setMoviesInSmall] = useState([]);
   useEffect(() => {
+    let mounted = true;
     const handleResize = () => {
       const windowWidth = window.innerWidth <= 425;
       if (windowWidth) {
@@ -18,9 +19,11 @@ const SearchResult = ({ movies, movieDB }) => {
         setSearchbar(false);
       }
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", () => {
+      mounted && handleResize();
+    });
     return () => {
-      window.addEventListener("resize", handleResize);
+      mounted = false;
     };
   }, []);
   const onSearch = query => {

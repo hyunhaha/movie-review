@@ -14,14 +14,20 @@ const ReviewItem = ({
 }) => {
   const [detail, setDetail] = useState([]);
   const [modalState, setModalState] = useState(false);
-  const { id, fileURL } = review;
+  const { id, fileURL, contentType } = review;
   const posterUrl = "https://image.tmdb.org/t/p/w500" + detail.poster_path;
 
   useEffect(() => {
-    movieDB.movieDetail(id).then(result => {
-      setDetail(result);
-    });
-  }, [movieDB, id]);
+    if (contentType === "movie") {
+      movieDB.movieDetail(id).then(result => {
+        setDetail(result);
+      });
+    } else if (contentType === "tv") {
+      movieDB.tvDetail(id).then(result => {
+        setDetail(result);
+      });
+    }
+  }, [movieDB, id, contentType]);
 
   const onClick = () => {
     setModalState(true);
@@ -56,7 +62,7 @@ const ReviewItem = ({
           )}
         </div>
 
-        <h1 className={styles.title}>{detail.title}</h1>
+        <h1 className={styles.title}>{detail.title || detail.name}</h1>
         <p className={styles.myRate}>나의평점 {review.rate}</p>
         <div className={styles.buttonWrap}>
           <button className={styles.button} onClick={onClick}>
@@ -74,6 +80,7 @@ const ReviewItem = ({
           movieId={id}
           userId={userId}
           FileInput={FileInput}
+          contentType={contentType}
         />
       )}
     </div>

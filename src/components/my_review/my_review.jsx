@@ -21,7 +21,6 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
       setReviews(reviews);
       setLoading(false);
     });
-    console.log("reviews update");
     return () => stopSync();
   }, [reviewRepository, userId]);
 

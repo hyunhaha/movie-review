@@ -2,6 +2,6 @@
   list-style: none;
   padding: 0;
   margin: 10px 0;
-  /* white-space: nowrap;
-  overflow-y: scroll; */
+  white-space: nowrap;
+  overflow-y: scroll;
 }

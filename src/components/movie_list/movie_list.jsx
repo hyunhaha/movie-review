@@ -1,9 +1,9 @@
 import React from "react";
-import MoiveItem from "../movie_item/moive_item";
+import MoiveItem from "../movie_item/movie_item";
 import styles from "./movie_list.module.css";
-const MovieList = ({ movies }) => (
+const MovieList = ({ items }) => (
   <ul className={styles.list}>
-    {movies.map((movie, index) => (
+    {items.map((movie, index) => (
       <MoiveItem key={movie.id} movie={movie} ranking={index} />
     ))}
   </ul>

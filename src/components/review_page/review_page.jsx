@@ -13,6 +13,7 @@ const ReviewPage = ({
   movieId,
   userId,
   FileInput,
+  contentType,
 }) => {
   const formRef = useRef();
   const reviewRef = useRef();
@@ -42,6 +43,7 @@ const ReviewPage = ({
   const setReviewData = () => {
     const review = {
       id: movieId,
+      contentType: contentType,
       movie_id: movieId,
       edit_date: Date.now() || "",
       review_content: reviewRef.current.value || "",
