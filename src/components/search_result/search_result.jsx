@@ -35,12 +35,6 @@ const SearchResult = ({ movies, movieDB }) => {
   };
   return (
     <div className={styles.movie}>
-      {/* {searchbar && <SearchBar onSearch={onSearch} />}
-      {movies.length === 0 ? (
-        <h1>검색 결과가 없습니다.</h1>
-      ) : (
-        <MovieList movies={movies} />
-      )} */}
       {searchbar ? (
         <div>
           <div className={styles.searchbarWrap}>
