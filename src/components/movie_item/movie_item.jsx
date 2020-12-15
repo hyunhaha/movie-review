@@ -4,8 +4,15 @@ import { useHistory } from "react-router-dom";
 
 const MoiveItem = ({ movie, ranking }) => {
   const history = useHistory();
-  const { poster_path, release_date, id, title, vote_average } = movie;
-  const { first_air_date, name } = movie;
+  const {
+    poster_path,
+    release_date,
+    id,
+    title,
+    vote_average,
+    first_air_date,
+    name,
+  } = movie;
   const url = "https://image.tmdb.org/t/p/w500" + poster_path;
   const date_arr = (release_date || first_air_date).split("-");
   const onClick = () => {
