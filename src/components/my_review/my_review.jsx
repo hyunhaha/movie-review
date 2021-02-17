@@ -12,12 +12,13 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
   const [userId, setUserId] = useState();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true);
     setUserId(localStorage.getItem("userId"));
     if (!userId) {
+      setLoading(false);
       return;
     }
     const stopSync = reviewRepository.syncReview(userId, reviews => {
+      setLoading(true);
       setReviews(reviews);
       setLoading(false);
     });

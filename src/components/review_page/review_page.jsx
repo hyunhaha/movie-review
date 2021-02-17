@@ -20,17 +20,20 @@ const ReviewPage = ({
   const [rate, setRate] = useState(null);
   const [review, setReview] = useState();
   const [imageFile, setImageFile] = useState({ fileName: null, fileURL: null });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (!userId) return;
-    setLoading(true);
+    if (!userId) {
+      return;
+    }
     const stopSync = reviewRepository.syncReview(userId, reviews => {
+      console.log(reviews);
+
       setReview(reviews[movieId]);
       setLoading(false);
     });
     return () => stopSync();
   }, [reviewRepository, userId, movieId]);
-
+  console.log(review);
   useEffect(() => {
     setRate(review && review.rate);
     review &&

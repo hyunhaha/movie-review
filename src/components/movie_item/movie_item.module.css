@@ -32,6 +32,18 @@
   height: 100%;
   border-radius: 5px;
 }
+.imagestandard:after {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 2px;
+  padding: 2px;
+  font-size: 9px;
+  background-color: #fff;
+}
+.imagestandard:hover:after {
+  content: "open";
+}
 .title {
   white-space: nowrap;
   overflow: hidden;

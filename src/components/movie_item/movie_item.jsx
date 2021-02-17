@@ -22,14 +22,16 @@ const MoiveItem = ({ movie, ranking }) => {
   };
   return (
     <li className={styles.item} onClick={onClick}>
+      <div className={styles.rank}>{ranking + 1}</div>
       <div className={styles.imagestandard}>
         <img className={styles.image} src={url} alt="poster" />
       </div>
-      <div className={styles.rank}>{ranking + 1}</div>
-      <h1 className={styles.title}>{title || name}</h1>
-      <p className={styles.release_date}>{`${date_arr[0]} • 평점 ${
-        vote_average / 2
-      }`}</p>
+      <div className={styles.detail}>
+        <h1 className={styles.title}>{title || name}</h1>
+        <p className={styles.release_date}>
+          {`${date_arr[0]} • 평점 ${vote_average / 2}`}
+        </p>
+      </div>
     </li>
   );
 };
