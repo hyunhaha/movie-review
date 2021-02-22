@@ -9,12 +9,14 @@ const MainPage = ({ movieDB, authService }) => {
   useEffect(() => {
     let mounted = true;
     movieDB
-      .mostPopular() //
+      .mostPopular(1) //
       .then(items => {
         mounted && setMovies(items);
       });
+
     return () => (mounted = false);
   }, [movieDB]);
+  console.log(movies);
   useEffect(() => {
     let mounted = true;
     movieDB
