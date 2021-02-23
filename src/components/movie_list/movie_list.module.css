@@ -4,4 +4,13 @@
   margin: 10px 0;
   white-space: nowrap;
   overflow-y: scroll;
+  position: relative;
+}
+.buttonItem {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+}
+.button {
+  border-style: none;
 }

@@ -6,9 +6,9 @@ class MovieDB {
       redirect: "follow",
     };
   }
-  async mostPopular(page) {
+  async mostPopular(page = 1) {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=ko-KR&sort_by=popularity.desc&region=KR&api_key=${this.key}&page=1`,
+      `https://api.themoviedb.org/3/movie/popular?language=ko-KR&sort_by=popularity.desc&region=KR&api_key=${this.key}&page=${page}`,
       this.getRequestOptions
     );
     const result = await response.json();
