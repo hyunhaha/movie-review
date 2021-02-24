@@ -14,12 +14,7 @@ const FetchMore = ({ loading, setPage }) => {
       fetchMoreObserver.unobserve(fetchMoreTrigger.current);
     };
   }, []);
-  return (
-    <div
-      ref={fetchMoreTrigger}
-      className={loading ? styles.loading : undefined}
-    />
-  );
+  return <div ref={fetchMoreTrigger} className={styles.fetchMore} />;
 };
 
 export default FetchMore;

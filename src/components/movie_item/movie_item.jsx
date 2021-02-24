@@ -14,7 +14,7 @@ const MoiveItem = ({ movie, ranking }) => {
     name,
   } = movie;
   const url = "https://image.tmdb.org/t/p/w500" + poster_path;
-  const date_arr = (release_date || first_air_date).split("-");
+  // const date_arr = (release_date || first_air_date).split("-");
   const onClick = () => {
     title
       ? history.push(`/movie/detail/${id}`)
@@ -29,7 +29,7 @@ const MoiveItem = ({ movie, ranking }) => {
       <div className={styles.detail}>
         <h1 className={styles.title}>{title || name}</h1>
         <p className={styles.release_date}>
-          {`${date_arr[0]} • 평점 ${vote_average / 2}`}
+          {/* {`${date_arr[0]} • 평점 ${vote_average / 2}`} */}
         </p>
       </div>
     </li>

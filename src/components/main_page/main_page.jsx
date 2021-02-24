@@ -1,63 +1,57 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import FetchMore from "../fetch_more/fetch_more";
+import { getMovieList, getTVList } from "../../service/listBuilder";
+import { dummyFetcher } from "../../service/util";
 import MovieList from "../movie_list/movie_list";
 import styles from "./main_page.module.css";
-const MainPage = ({ movieDB, authService }) => {
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+const MainPage = ({ movieDB }) => {
+  const [movieLoading, setMovieLoading] = useState(false);
+  const [tvLoading, setTvLoading] = useState(false);
+  const [moviePage, setMoviePage] = useState(1);
   const [movies, setMovies] = useState([]);
+  const [tvPage, setTvPage] = useState(1);
   const [tv, setTv] = useState([]);
+
   useEffect(() => {
+    console.log(moviePage);
     async function fetchData() {
-      const response = await movieDB.mostPopular(page); //
+      const response = await dummyFetcher(getMovieList, moviePage, "movie"); //
+      //  movieDB.mostPopular(moviePage)
       setMovies(prev => [...prev, ...response]);
     }
-    setLoading(true);
+    setMovieLoading(true);
     fetchData();
-    setLoading(false);
-    // .then(items => {
-    //   console.log(items);
-    //   mounted && setMovies(items);
-    // });
-  }, [movieDB, page]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     // You can await here
-  //     const response = await MyAPI.getData(someId);
-  //     // ...
-  //   }
-  //   fetchData();
-  // }, [someId]); // Or [] if effect doesn't need props or state
-
-  // console.log(movies);
+    setMovieLoading(false);
+  }, [movieDB, moviePage]);
 
   useEffect(() => {
-    let mounted = true;
-    movieDB
-      .mostTvPopular() //
-      .then(items => {
-        mounted && setTv(items);
-      });
-    return () => (mounted = false);
-  }, [movieDB]);
-  // console.log(tv);
+    async function fetchData() {
+      const response = await dummyFetcher(getTVList, tvPage, "tv");
+      if (response) setTv(prev => [...prev, ...response]);
+    }
+    setTvLoading(true);
+    fetchData();
+    setTvLoading(false);
+  }, [movieDB, tvPage]);
+
   return (
     <div className={styles.main}>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>영화</h1>
         <MovieList
           items={movies}
-          page={page}
-          loading={loading}
-          setPage={setPage}
+          loading={moviePage !== 1 && movieLoading}
+          setPage={setMoviePage}
         />
-        {/* <FetchMore loading={page !== 1 && loading} setPage={setPage} /> */}
       </div>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>tv</h1>
-        {/* <MovieList items={tv} /> */}
+        <MovieList
+          items={tv}
+          loading={tvPage !== 1 && tvLoading}
+          setPage={setTvPage}
+        />
       </div>
     </div>
   );
