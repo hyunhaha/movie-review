@@ -14,7 +14,6 @@ const MainPage = ({ movieDB }) => {
   const [tv, setTv] = useState([]);
 
   useEffect(() => {
-    console.log(moviePage);
     async function fetchData() {
       const response = await dummyFetcher(getMovieList, moviePage, "movie"); //
       //  movieDB.mostPopular(moviePage)
@@ -37,10 +36,6 @@ const MainPage = ({ movieDB }) => {
 
   return (
     <div className={styles.main}>
-      <nav>
-        <div>영화</div>
-        <div>tv</div>
-      </nav>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>영화</h1>
         <MovieList

@@ -5,7 +5,6 @@ const TVList = []
 const movieDB = new MovieDB(process.env.REACT_APP_MOVIEDB_API_KEY);
 
 const listBuilder = async (page, type) => {
-  console.log(type)
   if (type === 'movie') return await movieDB.mostPopular(page);
   else if (type === 'tv') return await movieDB.mostTvPopular(page)
 }
