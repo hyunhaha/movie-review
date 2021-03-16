@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getMovieList, getTVList } from "../../service/listBuilder";
 import { dummyFetcher } from "../../service/util";
+import Loading from "../loading/loading";
 import MovieList from "../movie_list/movie_list";
 import styles from "./main_page.module.css";
 const MainPage = ({ movieDB }) => {
@@ -15,29 +16,32 @@ const MainPage = ({ movieDB }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await dummyFetcher(getMovieList, moviePage, "movie"); //
+      setMovieLoading(true);
+      const response = await dummyFetcher(getMovieList, moviePage, "movie");
       //  movieDB.mostPopular(moviePage)
       setMovies(prev => [...prev, ...response]);
+      setMovieLoading(false);
     }
-    setMovieLoading(true);
     fetchData();
-    setMovieLoading(false);
   }, [movieDB, moviePage]);
 
   useEffect(() => {
     async function fetchData() {
+      setTvLoading(true);
       const response = await dummyFetcher(getTVList, tvPage, "tv");
-      if (response) setTv(prev => [...prev, ...response]);
+      // if (response)
+      setTv(prev => [...prev, ...response]);
+      setTvLoading(false);
     }
-    setTvLoading(true);
+
     fetchData();
-    setTvLoading(false);
   }, [movieDB, tvPage]);
 
   return (
     <div className={styles.main}>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>영화</h1>
+        {movieLoading && <Loading />}
         <MovieList
           items={movies}
           loading={moviePage !== 1 && movieLoading}
@@ -46,6 +50,7 @@ const MainPage = ({ movieDB }) => {
       </div>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>tv</h1>
+        {tvLoading && <Loading />}
         <MovieList
           items={tv}
           loading={tvPage !== 1 && tvLoading}
