@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
+import Loading from "../loading/loading";
 import styles from "./fetch_more.module.css";
 const FetchMore = ({ loading, setPage }) => {
   const fetchMoreTrigger = useRef(null);
@@ -14,7 +15,11 @@ const FetchMore = ({ loading, setPage }) => {
       fetchMoreObserver.unobserve(fetchMoreTrigger.current);
     };
   }, []);
-  return <div ref={fetchMoreTrigger} className={styles.fetchMore} />;
+  return (
+    <div ref={fetchMoreTrigger} className={styles.loadingSpinner}>
+      <Loading />
+    </div>
+  );
 };
 
 export default FetchMore;

@@ -1,12 +1,3 @@
-.fetchMore {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-  line-height: 28px;
-  border-top: solid 1px #000;
-  border-bottom: solid 1px #000;
-  background-color: #ff9;
-}
-.fetchMore:after {
-  content: "... 로딩중 ...";
+.loadingSpinner:after {
+  content: "로딩중";
 }
