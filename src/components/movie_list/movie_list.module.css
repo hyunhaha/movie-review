@@ -6,7 +6,7 @@
   overflow-y: scroll;
   position: relative;
 }
-.buttonItem {
+.fetch {
   display: inline-block;
   position: absolute;
   top: 50%;

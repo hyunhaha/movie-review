@@ -6,6 +6,7 @@ const FetchMore = ({ loading, setPage }) => {
   const fetchMoreTrigger = useRef(null);
   const fetchMoreObserver = new IntersectionObserver(([{ isIntersecting }]) => {
     if (isIntersecting) {
+      console.log("looked");
       setPage(page => page + 1);
     }
   });
@@ -16,7 +17,11 @@ const FetchMore = ({ loading, setPage }) => {
     };
   }, []);
   return (
-    <div ref={fetchMoreTrigger} className={styles.loadingSpinner}>
+    <div
+      ref={fetchMoreTrigger}
+      id={styles.fetchMore}
+      className={loading ? styles.loading : undefined}
+    >
       <Loading />
     </div>
   );

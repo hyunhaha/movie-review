@@ -41,20 +41,22 @@ const MainPage = ({ movieDB }) => {
     <div className={styles.main}>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>영화</h1>
-        {movieLoading && <Loading />}
+        {moviePage === 1 && movieLoading && <Loading />}
         <MovieList
           items={movies}
-          loading={moviePage !== 1 && movieLoading}
+          loading={movieLoading}
           setPage={setMoviePage}
+          page={moviePage}
         />
       </div>
       <div className={styles.movie_chart}>
         <h1 className={styles.title}>tv</h1>
-        {tvLoading && <Loading />}
+        {tvPage === 1 && tvLoading && <Loading />}
         <MovieList
           items={tv}
           loading={tvPage !== 1 && tvLoading}
           setPage={setTvPage}
+          page={tvPage}
         />
       </div>
     </div>

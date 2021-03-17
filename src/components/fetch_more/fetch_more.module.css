@@ -1,3 +1,19 @@
-.loadingSpinner:after {
-  content: "로딩중";
+#fetchMore {
+  position: absolute;
+
+  right: 0;
+  margin-top: 10px;
+  visibility: hidden;
+  text-align: center;
+  line-height: 28px;
+  border-top: solid 1px #000;
+  border-bottom: solid 1px #000;
+  background-color: #ff9;
+}
+
+#fetchMore.loading {
+  visibility: visible;
+}
+#fetchMore.loading:after {
+  content: "... 로딩중 ...";
 }

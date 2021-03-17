@@ -8,8 +8,11 @@
   padding: 0 5px;
   margin: 0;
 }
-.list {
+#list {
   padding: 0;
+}
+#list.loading::after {
+  content: "loading";
 }
 @media screen and (max-width: 425px) {
   .main {
