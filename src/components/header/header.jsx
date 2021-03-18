@@ -44,23 +44,15 @@ const Header = ({ onSearch, authService }) => {
     history.push("/my-review");
   };
 
-  const onLogoClick = event => {
-    event.preventDefault();
-    history.push("/");
-  };
-
   return (
     <div
       className={headerOpacity === "solid" ? styles.header : styles.transparent}
     >
       <ul className={styles.list}>
         <li className={styles.list_logo}>
-          <img
-            onClick={onLogoClick}
-            className={styles.logo}
-            src="/images/logo.png"
-            alt="logo"
-          />
+          <a href="/" className={styles.logo_link}>
+            <img className={styles.logo} src="/images/logo.png" alt="logo" />
+          </a>
         </li>
         <li className={styles.list_searchbar}>
           <div className={styles.searchbar}>
