@@ -37,6 +37,7 @@ const Header = ({ onSearch, authService }) => {
   };
 
   const onSearchWord = query => {
+    console.log(query);
     onSearch(query);
   };
 

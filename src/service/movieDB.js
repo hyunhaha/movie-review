@@ -22,7 +22,7 @@ class MovieDB {
     const result = await response.json();
     return result.results;
   };
-  async search(query) {
+  search = async (query) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${query}&language=ko-KR&api_key=${this.key}`,
       this.getRequestOptions
