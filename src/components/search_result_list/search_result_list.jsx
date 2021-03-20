@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getSearchList } from "../../service/listBuilder";
-import { dummyFetcher } from "../../service/util";
 import MoiveItem from "../movie_item/movie_item";
 import styles from "./search_result_list.module.css";
 const SearchResultList = ({ searchWord }) => {

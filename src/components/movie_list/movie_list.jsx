@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FetchMore from "../fetch_more/fetch_more";
 import MoiveItem from "../movie_item/movie_item";
 import styles from "./movie_list.module.css";
