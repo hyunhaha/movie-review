@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getSearchList } from "../../service/listBuilder";
 import { dummyFetcher } from "../../service/util";
 import MoiveItem from "../movie_item/movie_item";
-
+import styles from "./search_result_list.module.css";
 const SearchResultList = ({ searchWord }) => {
   // const [list, setList] = useState([]);
   const [searchList, setSearchList] = useState([]);
@@ -20,7 +20,7 @@ const SearchResultList = ({ searchWord }) => {
   }, [searchWord]);
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {/* <div>{searchWord}</div> */}
       {searchList.map((e, idx) => (
         <MoiveItem key={idx} movie={e} ranking={idx} />
