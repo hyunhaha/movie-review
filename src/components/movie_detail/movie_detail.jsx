@@ -60,8 +60,8 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
             <div className={styles.actors}>
               <h2>출연진</h2>
               <ul className={styles.actorsList}>
-                {actors.map(actor => (
-                  <Actor key={actor.id} actor={actor} />
+                {actors.map((actor, idx) => (
+                  <Actor key={idx} actor={actor} />
                 ))}
               </ul>
             </div>

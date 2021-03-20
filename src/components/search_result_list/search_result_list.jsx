@@ -3,27 +3,27 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getSearchList } from "../../service/listBuilder";
 import { dummyFetcher } from "../../service/util";
+import MoiveItem from "../movie_item/movie_item";
 
-const SearchResultList = ({ searchWord, searchList }) => {
-  const [list, setList] = useState([]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await dummyFetcher(getSearchList, 1, searchWord);
-  //     console.log(response);
-  //     setSearchList([response]);
-  //     console.log(searchList);
-  //   }
-
-  //   fetchData();
-  // }, [searchWord]);
+const SearchResultList = ({ searchWord }) => {
+  // const [list, setList] = useState([]);
+  const [searchList, setSearchList] = useState([]);
   useEffect(() => {
-    setList([...searchList]);
-  }, [searchList]);
+    async function fetchData() {
+      const response = await getSearchList(1, searchWord);
+      console.log(response);
+      setSearchList([...response]);
+      // console.log(searchList);
+    }
+
+    fetchData();
+  }, [searchWord]);
+
   return (
     <ul>
       {/* <div>{searchWord}</div> */}
-      {list.map((e, idx) => (
-        <li key={idx}>{e.title || e.name}</li>
+      {searchList.map((e, idx) => (
+        <MoiveItem key={idx} movie={e} ranking={idx} />
       ))}
     </ul>
   );

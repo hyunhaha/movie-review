@@ -33,17 +33,17 @@ const SearchResult = ({ searchWord, movies, movieDB }) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(searchWord);
-    async function fetchData() {
-      setSearchLoading(true);
-      const response = await getSearchList(1, searchWord);
-      console.log(response);
-      setSearchList([...response]);
-      setSearchLoading(false);
-    }
-    searchWord && fetchData();
-  }, [searchWord]);
+  // useEffect(() => {
+  //   console.log(searchWord);
+  //   async function fetchData() {
+  //     setSearchLoading(true);
+  //     const response = await getSearchList(1, searchWord);
+  //     console.log(response);
+  //     setSearchList([...response]);
+  //     setSearchLoading(false);
+  //   }
+  //   searchWord && fetchData();
+  // }, [searchWord]);
 
   const onSearch = query => {
     movieDB
