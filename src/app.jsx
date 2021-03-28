@@ -17,6 +17,7 @@ function App({ authService, movieDB, reviewRepository, FileInput }) {
     console.log(query);
     setSearchWord(query);
   };
+
   return (
     <div className={styles.app}>
       <BrowserRouter>

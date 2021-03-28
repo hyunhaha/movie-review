@@ -79,12 +79,41 @@
 }
 @media screen and (max-width: 425px) {
   .header {
-    display: none;
+    /* display: none; */
+    /* margin-top: 80px; */
   }
   .transparent {
     display: none;
   }
-  .list_logo {
+
+  .transparent.display {
+    display: block;
+    position: fixed;
+    z-index: 50;
+    top: 0;
+    left: 0;
     height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 3.5%;
+  }
+  .transparent .displayNone {
+    display: none;
+  }
+  .list_logo {
+    display: none;
+  }
+  .list_searchbar {
+    margin: 0;
+    width: 100%;
+  }
+  .list_searchbar_displayNone {
+    display: none;
+  }
+  .list_searchbar .searchbar {
+    padding: 0;
+  }
+  .login {
+    display: none;
   }
 }

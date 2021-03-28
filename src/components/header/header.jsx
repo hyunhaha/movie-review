@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import SearchBar from "../search_bar/search_bar";
 import styles from "./header.module.css";
 
@@ -9,6 +9,11 @@ const Header = ({ onSearch, authService }) => {
   const history = useHistory();
   const [login, setLogin] = useState(false);
   const [headerOpacity, setHeaderOpacity] = useState("transparent");
+
+  const [searchbar, setSearchbar] = useState(
+    window.innerWidth <= 425 ? true : false
+  );
+  const location = useLocation();
   useEffect(() => {
     authService.onAuthChange(user => {
       if (!user) {
@@ -18,6 +23,7 @@ const Header = ({ onSearch, authService }) => {
       }
     });
   });
+
   useEffect(() => {
     const onScroll = () => {
       const position = window.scrollY > 80;
@@ -32,6 +38,25 @@ const Header = ({ onSearch, authService }) => {
       document.addEventListener("scroll", onScroll);
     };
   }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    const handleResize = () => {
+      const windowWidth = window.innerWidth <= 425;
+      if (windowWidth) {
+        setSearchbar(true);
+      } else {
+        setSearchbar(false);
+      }
+    };
+    window.addEventListener("resize", () => {
+      mounted && handleResize();
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [searchbar, location]);
+
   const gotoLoginPage = () => {
     history.push("/login");
   };
@@ -47,7 +72,15 @@ const Header = ({ onSearch, authService }) => {
 
   return (
     <div
-      className={headerOpacity === "solid" ? styles.header : styles.transparent}
+      className={
+        headerOpacity === "solid"
+          ? styles.header
+          : `${styles.transparent} ${
+              searchbar === true && location.pathname === "/search-result"
+                ? styles.display
+                : styles.displayNone
+            }`
+      }
     >
       <ul className={styles.list}>
         <li className={styles.list_logo}>
@@ -60,7 +93,7 @@ const Header = ({ onSearch, authService }) => {
             <SearchBar onSearch={onSearchWord} />
           </div>
         </li>
-        <li>
+        <li className={styles.login}>
           {login ? (
             <div className={styles.loginCase}>
               <button

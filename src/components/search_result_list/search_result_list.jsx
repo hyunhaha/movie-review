@@ -14,7 +14,7 @@ const SearchResultList = ({ searchWord }) => {
       setSearchList([...response]);
       // console.log(searchList);
     }
-
+    console.log(searchWord);
     fetchData();
   }, [searchWord]);
 
