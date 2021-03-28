@@ -4,4 +4,4 @@
 
 <img width="390" alt="스크린샷 2021-02-09 21 51 02" src="https://user-images.githubusercontent.com/50136014/107646708-9dfaa500-6cbd-11eb-8bb2-7ff77beea2cf.png">
 
-https://5fcf507d99dc7aa3d3e8ef7f--hh-movie-review.netlify.app
+https://6060bc4b6369ffa84de6fa84--hh-movie-review.netlify.app/
