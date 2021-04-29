@@ -1,6 +1,4 @@
 .modal {
-  height: 100vh;
-  width: 100vw;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -10,12 +8,20 @@
   right: 0;
   left: 0;
   z-index: 100;
-  background-color: rgba(180, 180, 180, 0.534);
+
   text-align: center;
   padding: 20px 0;
   box-sizing: border-box;
 
   align-items: center;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(180, 180, 180, 0.5);
 }
 .review_container {
   background-color: white;

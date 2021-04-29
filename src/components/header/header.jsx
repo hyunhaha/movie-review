@@ -26,7 +26,7 @@ const Header = ({ onSearch, authService }) => {
 
   useEffect(() => {
     const onScroll = () => {
-      const position = window.scrollY > 80;
+      const position = window.scrollY > 0;
       if (position) {
         setHeaderOpacity("solid");
       } else {

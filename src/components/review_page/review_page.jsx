@@ -21,6 +21,7 @@ const ReviewPage = ({
   const [review, setReview] = useState();
   const [imageFile, setImageFile] = useState({ fileName: null, fileURL: null });
   const [loading, setLoading] = useState(true);
+  const [imageName, setImageName] = useState("");
   useEffect(() => {
     if (!userId) {
       return;
@@ -33,18 +34,19 @@ const ReviewPage = ({
     });
     return () => stopSync();
   }, [reviewRepository, userId, movieId]);
-  console.log(review);
+
   useEffect(() => {
     setRate(review && review.rate);
-    review &&
-      setImageFile({
-        fileName: review.fileName || "",
-        fileURL: review.fileURL || "",
-      });
+
+    setImageFile({
+      fileName: (review && review.fileName) || "",
+      fileURL: (review && review.fileURL) || "",
+    });
+    setImageName(imageFile.fileName);
   }, [review]);
 
   const setReviewData = () => {
-    const review = {
+    const reviewSet = {
       id: movieId,
       contentType: contentType,
       movie_id: movieId,
@@ -54,18 +56,22 @@ const ReviewPage = ({
       fileName: imageFile.fileName || "",
       fileURL: imageFile.fileURL || "",
     };
-    addOrUpdateCard(review);
-    // reviewRef.current.value = review.review_content;
+    addOrUpdateCard(reviewSet);
   };
   const onFileChanged = file => {
     setImageFile({
       fileName: file.name,
       fileURL: file.url,
     });
+    setImageName(file.name);
+    console.log(review);
+    console.log(imageFile.fileName);
+    console.log(file.name);
   };
 
   const onSaveClick = event => {
     event.preventDefault();
+    console.log(review);
     setReviewData();
     const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
       onClick: () => {
@@ -98,7 +104,8 @@ const ReviewPage = ({
 
   return (
     <div className={styles.modal}>
-      <div className={styles.review_container}>
+      <div className={styles.overlay} onClick={onCloseClick}></div>
+      <section className={styles.review_container}>
         <button className={styles.closeButton} onClick={onCloseClick}>
           x
         </button>
@@ -122,7 +129,7 @@ const ReviewPage = ({
           ></textarea>
           <FileInput
             onFileChanged={onFileChanged}
-            name={review && review.fileName}
+            name={imageName ? imageName : review && review.fileName}
           />
           <p className={styles.description}>
             업로드한 이미지는 my page에서 볼 수 있습니다
@@ -136,7 +143,7 @@ const ReviewPage = ({
             <Loading />
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 };
