@@ -5,14 +5,15 @@
 <img width="390" alt="스크린샷 2021-02-09 21 51 02" src="https://user-images.githubusercontent.com/50136014/107646708-9dfaa500-6cbd-11eb-8bb2-7ff77beea2cf.png">
 
 https://5fcf507d99dc7aa3d3e8ef7f--hh-movie-review.netlify.app
+
 ## 🔑주요기능
 
-*영화 순위
-*영화 검색
-*영화 리뷰 작성
-*영화 평점 등록
-*포토카드 이미지 등록
-*리뷰 모아보기
+- 영화 순위
+- 영화 검색
+- 영화 리뷰 작성
+- 영화 평점 등록
+- 포토카드 이미지 등록
+- 리뷰 모아보기
 
 https://5fcf507d99dc7aa3d3e8ef7f--hh-movie-review.netlify.app
 https://6060bc4b6369ffa84de6fa84--hh-movie-review.netlify.app/
