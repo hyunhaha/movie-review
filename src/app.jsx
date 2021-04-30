@@ -9,28 +9,27 @@ import Header from "./components/header/header";
 import styles from "./app.module.css";
 import MyReview from "./components/my_review/my_review";
 import Footer from "./components/footer/footer";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/action/user_action";
+import { useDispatch } from "react-redux";
+import { setUser, clearUser } from "./redux/actions/user_action";
 function App({ authService, movieDB, reviewRepository, FileInput }) {
   const [searchWord, setSearchWord] = useState(undefined);
 
   const history = useHistory();
-  const dispatch = useDispatch();
+  let dispatch = useDispatch();
 
   useEffect(() => {
     authService.onAuthChange(user => {
-      console.log("user", user);
       if (user) {
         history.push("/");
         dispatch(setUser(user));
       } else {
-        history.push("/login");
+        // history.push("/login");
+        dispatch(clearUser());
       }
     });
-  }, []);
+  }, [authService, dispatch, history]);
 
   const onSearch = query => {
-    console.log(query);
     setSearchWord(query);
   };
 

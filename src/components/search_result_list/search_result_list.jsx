@@ -10,11 +10,8 @@ const SearchResultList = ({ searchWord }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await getSearchList(1, searchWord);
-      console.log(response);
       setSearchList([...response]);
-      // console.log(searchList);
     }
-    console.log(searchWord);
     fetchData();
   }, [searchWord]);
 

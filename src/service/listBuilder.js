@@ -22,13 +22,11 @@ export const getMovieList = (page = 1, type) => {
 export const getTVList = (page = 1, type) => {
   if (!TVList[page]) {
     TVList[page] = listBuilder(page, type);
-    console.log(TVList)
   }
   return TVList[page]
 }
 
 export const getSearchList = (page, searchWord) => {
-  console.log(searchWord)
   let searchList = searchListBuilder(page, searchWord)
 
 

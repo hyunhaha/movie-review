@@ -7,7 +7,6 @@ const StarRating = ({ value, userId, setRate }) => {
 
   const [star, setStar] = useState(value);
   const onChange = value => {
-    console.log(`rate is ${value}`);
     if (!userId) {
       history.push("/login");
     } else {

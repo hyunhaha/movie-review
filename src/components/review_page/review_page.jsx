@@ -27,8 +27,6 @@ const ReviewPage = ({
       return;
     }
     const stopSync = reviewRepository.syncReview(userId, reviews => {
-      console.log(reviews);
-
       setReview(reviews[movieId]);
       setLoading(false);
     });
@@ -43,7 +41,7 @@ const ReviewPage = ({
       fileURL: (review && review.fileURL) || "",
     });
     setImageName(imageFile.fileName);
-  }, [review]);
+  }, [review, imageFile.fileName]);
 
   const setReviewData = () => {
     const reviewSet = {
@@ -64,14 +62,10 @@ const ReviewPage = ({
       fileURL: file.url,
     });
     setImageName(file.name);
-    console.log(review);
-    console.log(imageFile.fileName);
-    console.log(file.name);
   };
 
   const onSaveClick = event => {
     event.preventDefault();
-    console.log(review);
     setReviewData();
     const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
       onClick: () => {

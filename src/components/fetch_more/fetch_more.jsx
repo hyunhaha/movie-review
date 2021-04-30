@@ -6,7 +6,6 @@ const FetchMore = ({ loading, setPage }) => {
   const fetchMoreTrigger = useRef(null);
   const fetchMoreObserver = new IntersectionObserver(([{ isIntersecting }]) => {
     if (isIntersecting) {
-      console.log("looked");
       setPage(page => page + 1);
     }
   });

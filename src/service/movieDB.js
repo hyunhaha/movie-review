@@ -8,7 +8,7 @@ class MovieDB {
   }
   mostPopular = async (page) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=ko-KR&sort_by=popularity.desc&region=KR&api_key=${this.key}&page=${page}`,
+      `https://api.themoviedb.org/3/movie/popular?language=ko-KR&sort_by=popularity.desc&region=KR&page=${page}&api_key=${this.key}`,
       this.getRequestOptions
     );
     const result = await response.json();

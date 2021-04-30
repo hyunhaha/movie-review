@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useHistory, useSelector } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Loading from "../loading/loading";
 import ReviewItem from "../review_item/review_item";
 import styles from "./my_review.module.css";
@@ -11,8 +12,12 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
   const [reviews, setReviews] = useState({});
   const [userId, setUserId] = useState();
   const [loading, setLoading] = useState(false);
+  const currentUser = useSelector(state => state.user.currentUser);
+
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    // setUserId(localStorage.getItem("userId"));
+    setUserId(currentUser && currentUser.uid);
+
     if (!userId) {
       setLoading(false);
       return;
@@ -23,7 +28,7 @@ const MyReview = ({ reviewRepository, movieDB, authService, FileInput }) => {
       setLoading(false);
     });
     return () => stopSync();
-  }, [reviewRepository, userId]);
+  }, [reviewRepository, userId, currentUser]);
 
   const onLogout = () => {
     authService.logout();

@@ -1,22 +1,20 @@
 import React from "react";
-import { useCallback } from "react";
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+// import { useCallback } from "react";
+// import { useHistory } from "react-router-dom";
 import styles from "./login.module.css";
 const Login = ({ authService }) => {
-  const history = useHistory();
-  const gotoMain = useCallback(
-    userID => {
-      // history.push({
-      //   pathname: "/",
-      //   state: { id: userID },
-      // });
-      history.push("/");
-      window.localStorage.setItem("userId", userID);
-    },
-    [history]
-  );
-  // console.log(useHistory().state);
+  // const history = useHistory();
+  // const gotoMain = useCallback(
+  //   userID => {
+  //     // history.push({
+  //     //   pathname: "/",
+  //     //   state: { id: userID },
+  //     // });
+  //     history.push("/");
+  //     window.localStorage.setItem("userId", userID);
+  //   },
+  //   [history]
+  // );
   const onLogin = event => {
     authService //
       .login(event.currentTarget.textContent);

@@ -8,6 +8,7 @@ import styles from "./movie_detail.module.css";
 import BackImage from "../back_image/back_image";
 import Poster from "../poster/poster";
 import MovieBasicInfo from "../movie_basic_info/movie_basic_info";
+import { useSelector } from "react-redux";
 
 const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
   const params = useParams();
@@ -18,6 +19,8 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
   const [userId, setUserId] = useState(null);
   const [actors, setActors] = useState([]);
   const [contentType, setContentType] = useState("");
+  const currentUser = useSelector(state => state.user.currentUser);
+
   useEffect(() => {
     setContentType(location.pathname.split("/")[1]);
     if (location.pathname.split("/")[1] === "movie") {
@@ -35,8 +38,9 @@ const MovieDetail = ({ movieDB, reviewRepository, FileInput }) => {
         setActors(result.cast);
       });
     }
-    setUserId(localStorage.getItem("userId"));
-  }, [movieDB, params.id, location.pathname]);
+    // setUserId(localStorage.getItem("userId"));
+    setUserId(currentUser && currentUser.uid);
+  }, [movieDB, params.id, location.pathname, currentUser]);
   const onReviewClick = state => {
     if (!userId) {
       history.push("/login");

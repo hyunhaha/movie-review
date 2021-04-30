@@ -19,6 +19,7 @@ const MainPage = ({ movieDB }) => {
       setMovieLoading(true);
       const response = await dummyFetcher(getMovieList, moviePage, "movie");
       //  movieDB.mostPopular(moviePage)
+      // console.log(response);
       setMovies(prev => [...prev, ...response]);
       setMovieLoading(false);
     }
