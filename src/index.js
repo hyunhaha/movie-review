@@ -8,6 +8,7 @@ import AuthService from './service/auth_service';
 import ReviewRepository from './service/review_repository';
 import ImageUploadButton from './components/image_upload_button/image_upload_button';
 import ImageUploader from './service/image_uploader';
+import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux';
@@ -31,7 +32,10 @@ ReactDOM.render(
       window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
     >
-      <App movieDB={movieDB} authService={authService} reviewRepository={reviewRepository} FileInput={FileInput} />
+      <BrowserRouter>
+        <App movieDB={movieDB} authService={authService} reviewRepository={reviewRepository} FileInput={FileInput} />
+      </BrowserRouter>
+
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

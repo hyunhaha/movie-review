@@ -7,10 +7,11 @@ const Login = ({ authService }) => {
   const history = useHistory();
   const gotoMain = useCallback(
     userID => {
-      history.push({
-        pathname: "/",
-        state: { id: userID },
-      });
+      // history.push({
+      //   pathname: "/",
+      //   state: { id: userID },
+      // });
+      history.push("/");
       window.localStorage.setItem("userId", userID);
     },
     [history]
@@ -18,16 +19,16 @@ const Login = ({ authService }) => {
   // console.log(useHistory().state);
   const onLogin = event => {
     authService //
-      .login(event.currentTarget.textContent)
-      .then(data => gotoMain(data.user.uid));
+      .login(event.currentTarget.textContent);
+    // .then(data => gotoMain(data.user.uid));
   };
-  useEffect(() => {
-    authService.onAuthChange(user => {
-      if (user) {
-        gotoMain(user.uid);
-      }
-    });
-  }, [authService, gotoMain]);
+  // useEffect(() => {
+  //   authService.onAuthChange(user => {
+  //     if (user) {
+  //       gotoMain(user.uid);
+  //     }
+  //   });
+  // }, [authService, gotoMain]);
   return (
     <section className={styles.login}>
       <header>로그인이 필요합니다</header>

@@ -33,7 +33,6 @@ const MainPage = ({ movieDB }) => {
       setTv(prev => [...prev, ...response]);
       setTvLoading(false);
     }
-
     fetchData();
   }, [movieDB, tvPage]);
 
