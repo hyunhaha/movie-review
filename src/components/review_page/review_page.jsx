@@ -36,10 +36,10 @@ const ReviewPage = ({
   useEffect(() => {
     setRate(review && review.rate);
 
-    setImageFile({
-      fileName: (review && review.fileName) || "",
-      fileURL: (review && review.fileURL) || "",
-    });
+    // setImageFile({
+    //   fileName: (review && review.fileName) || "",
+    //   fileURL: (review && review.fileURL) || "",
+    // });
     setImageName(imageFile.fileName);
   }, [review, imageFile.fileName]);
 
@@ -57,16 +57,20 @@ const ReviewPage = ({
     addOrUpdateCard(reviewSet);
   };
   const onFileChanged = file => {
+    console.log(file);
     setImageFile({
       fileName: file.name,
       fileURL: file.url,
     });
+    console.log(imageFile);
     setImageName(file.name);
   };
 
   const onSaveClick = event => {
     event.preventDefault();
     setReviewData();
+    console.log(imageFile);
+
     const { hide } = cogoToast.success("평점과 리뷰가 저장되었습니다.", {
       onClick: () => {
         hide();

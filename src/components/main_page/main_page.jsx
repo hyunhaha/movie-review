@@ -20,8 +20,8 @@ const MainPage = ({ movieDB }) => {
       const response = await dummyFetcher(getMovieList, moviePage, "movie");
       //  movieDB.mostPopular(moviePage)
       // console.log(response);
-      setMovies(prev => [...prev, ...response]);
       setMovieLoading(false);
+      setMovies(prev => [...prev, ...response]);
     }
     fetchData();
   }, [movieDB, moviePage]);
@@ -31,8 +31,8 @@ const MainPage = ({ movieDB }) => {
       setTvLoading(true);
       const response = await dummyFetcher(getTVList, tvPage, "tv");
       // if (response)
-      setTv(prev => [...prev, ...response]);
       setTvLoading(false);
+      setTv(prev => [...prev, ...response]);
     }
     fetchData();
   }, [movieDB, tvPage]);

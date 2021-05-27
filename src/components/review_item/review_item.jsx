@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import ImageCard from "../image_card/image_card";
 import ReviewPage from "../review_page/review_page";
 import styles from "./review_item.module.css";
 
@@ -43,7 +44,7 @@ const ReviewItem = ({
   return (
     <div className={styles.itemWrap}>
       <li className={styles.item}>
-        <div className={styles.posterWrap}>
+        {/* <div className={styles.posterWrap}>
           <img
             className={styles.poster}
             src={detail.poster_path ? posterUrl : null}
@@ -60,8 +61,12 @@ const ReviewItem = ({
               </div>
             </div>
           )}
-        </div>
+        </div> */}
 
+        <ImageCard
+          poster={detail.poster_path ? posterUrl : null}
+          uploadImg={fileURL}
+        />
         <h1 className={styles.title}>{detail.title || detail.name}</h1>
         <p className={styles.myRate}>나의평점 {review.rate}</p>
         <div className={styles.buttonWrap}>
